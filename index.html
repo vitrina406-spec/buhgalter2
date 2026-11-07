@@ -1,0 +1,1687 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAPPY FINANCE — перетворюємо фінансовий хаос на систему</title>
+<meta name="description" content="Бухгалтерський, податковий, кадровий та управлінський облік для ФОП і ТОВ. 7 років, 25+ бізнесів на супроводі. Засновниця — Марія Панченко.">
+<meta name="theme-color" content="#0B1640">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Montserrat:wght@600&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Brand: #102662 · #FFFFFF · #FB6835 · #CAAE99 */
+  --navy:#102662; --deep:#0B1640; --ink:#081030;
+  --orange:#FB6835; --orange-h:#E5552A; --orange-t:#C4461A;
+  --beige:#CAAE99; --sand:#EAE1D8; --paper:#F4F2EF; --white:#fff;
+  --text:#38446A; --muted:#626C8A; --line:#DDD8D1; --line-d:rgba(255,255,255,.12);
+  --on-d:#fff; --on-d2:#B5BFDB;
+  --error:#C2361B; --ok:#1F7A55;
+  --f-d:"Unbounded",system-ui,sans-serif;
+  --f:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-m:"JetBrains Mono",ui-monospace,monospace;
+  --f-logo:"Montserrat",sans-serif;
+  --wrap:1280px; --hh:78px;
+  --ease:cubic-bezier(.2,.7,.2,1); --spring:cubic-bezier(.34,1.4,.5,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + 8px);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--f);font-size:17px;line-height:1.6;color:var(--text);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--f-d);color:var(--navy);margin:0;font-weight:600;line-height:1.2;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 32px;position:relative}
+.skip{position:absolute;left:16px;top:-60px;z-index:300;background:var(--orange);color:var(--navy);padding:10px 16px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+svg.i{width:22px;height:22px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mk{fill:none;stroke:currentColor;stroke-width:3.3;stroke-linecap:butt}
+
+/* brand pill: word in an outlined capsule (from the logo) */
+.pill{position:relative;display:inline;white-space:nowrap;color:inherit;margin:0 .5em}
+h1:has(.pill),h2:has(.pill),h3:has(.pill){line-height:1.34}
+@media (max-width:640px){.pill::before{left:-.28em;right:-.28em}.wrap{padding-left:20px;padding-right:20px}}
+.pill.ls{margin-left:0}
+.pill.le{margin-right:0}
+.pill::before{content:"";position:absolute;left:-.42em;right:-.42em;top:-.2em;bottom:-.2em;border:.065em solid var(--orange);border-radius:999px;pointer-events:none}
+.o{color:var(--orange-h)}
+.dark .o,.hero .o{color:var(--orange)}
+
+/* mono tag "[ 01 ] ..." */
+.tag{font-family:var(--f-m);font-size:12.5px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.tag b{color:var(--orange-t);font-weight:700}
+.dark .tag{color:var(--on-d2)}
+.dark .tag b{color:var(--orange)}
+
+.h2{font-size:clamp(28px,2.9vw,42px);margin-top:0;letter-spacing:-.03em}
+.lede{font-size:18.5px;max-width:560px;margin-top:22px}
+.dark .lede{color:var(--on-d2)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:0 30px;border-radius:999px;border:2px solid transparent;font-family:var(--f);font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s,border-color .2s,transform .25s var(--spring)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn .i{width:19px;height:19px;stroke-width:2.2}
+.btn-o{background:var(--orange);color:var(--ink)}
+.btn-o:hover{background:#FF7D4E}
+.btn-n{background:var(--navy);color:#fff}
+.btn-line{border-color:currentColor}
+.btn-block{width:100%}
+
+/* ---------- header ---------- */
+.hdr{position:fixed;inset:0 0 auto;z-index:100;height:var(--hh);display:flex;align-items:center;transition:background .3s,box-shadow .3s}
+.hdr.s{background:rgba(11,22,64,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line-d)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+/* Brand lockup — proportions measured from the original logo (mark = --m) */
+.brand{--m:44px;display:inline-grid;grid-template-columns:var(--m) auto;column-gap:calc(var(--m)*.5);align-items:center;color:#E6E8EE;text-decoration:none;width:max-content}
+.brand svg{width:var(--m);height:var(--m);display:block}
+.brand .w{font-family:var(--f-logo);font-weight:600;font-size:calc(var(--m)*.523);line-height:1.21;letter-spacing:.012em;margin:calc(var(--m)*-.133) 0;white-space:nowrap}
+.brand .t{grid-column:1/-1;font-family:"Open Sans",sans-serif;font-weight:400;font-size:calc(var(--m)*.233);line-height:1;letter-spacing:-.005em;margin-top:calc(var(--m)*.26);white-space:nowrap}
+
+.nav{display:flex;gap:4px;background:rgba(255,255,255,.06);border:1px solid var(--line-d);border-radius:999px;padding:5px}
+.nav a{color:#DDE3F3;text-decoration:none;font-weight:500;font-size:14.5px;padding:8px 15px;border-radius:999px;white-space:nowrap;transition:background .2s,color .2s}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav a.on{background:#fff;color:var(--navy)}
+.hdr-r{display:flex;align-items:center;gap:16px}
+.hdr-ph{color:#fff;text-decoration:none;font-family:var(--f-m);font-weight:500;font-size:14.5px;white-space:nowrap}
+.hdr .btn{min-height:46px;padding:0 22px;font-size:14.5px}
+.burger{display:none;width:48px;height:48px;border-radius:50%;border:1px solid var(--line-d);background:transparent;color:#fff;cursor:pointer;align-items:center;justify-content:center}
+.mnav{position:fixed;inset:var(--hh) 0 0;z-index:99;background:var(--deep);padding:24px 20px;display:flex;flex-direction:column;gap:4px;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.mnav.open{opacity:1;visibility:visible}
+.mnav a.l{color:#fff;text-decoration:none;font-family:var(--f-d);font-size:26px;font-weight:500;padding:12px 0;border-bottom:1px solid var(--line-d)}
+.mnav .btn{margin-top:20px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--deep);color:#fff;padding:calc(var(--hh) + 56px) 0 0;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(900px 600px at 15% 20%,#14307E 0%,transparent 60%),radial-gradient(700px 500px at 100% 100%,rgba(251,104,53,.14),transparent 60%)}
+.hero-mark{position:absolute;right:-120px;top:40px;width:720px;height:720px;z-index:-1;color:rgba(255,255,255,.055)}
+.hero-mark .mk{stroke-width:1.1;stroke-dasharray:600;stroke-dashoffset:600;animation:draw 3.2s var(--ease) .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:start}
+.hero h1{color:#fff;font-size:clamp(36px,4.5vw,66px);font-weight:600;line-height:1.24;letter-spacing:-.035em;margin:26px 0 28px}
+.hero .sub{font-size:clamp(17px,1.4vw,20px);color:var(--on-d2);max-width:560px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.hero-cta .btn-line{color:#fff;border-color:rgba(255,255,255,.35)}
+.hero-cta .btn-line:hover{border-color:#fff}
+.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px}
+.chips-row span{font-family:var(--f-m);font-size:12.5px;color:var(--on-d2);border:1px solid var(--line-d);border-radius:999px;padding:6px 12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:80px;border-top:1px solid var(--line-d)}
+.stat{padding:34px 24px 40px 0}
+.stat+.stat{padding-left:24px;border-left:1px solid var(--line-d)}
+.stat b{display:block;font-family:var(--f-d);font-weight:600;font-size:clamp(48px,5.6vw,84px);line-height:1;letter-spacing:-.04em;color:#fff;white-space:nowrap}
+.stat b em{font-style:normal;color:var(--orange)}
+.stat>span{display:block;margin-top:14px;font-size:15px;color:var(--on-d2);max-width:240px}
+
+/* ---------- RECEIPT FORM ---------- */
+.receipt{position:relative;background:#fff;color:var(--navy);font-family:var(--f-m);padding:26px 26px 24px;box-shadow:0 40px 80px -30px rgba(0,0,0,.55);transform:rotate(1.2deg);transition:transform .5s var(--spring)}
+.receipt:hover,.receipt:focus-within{transform:rotate(0)}
+.receipt::after{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px;
+  background:linear-gradient(45deg,transparent 33.33%,#fff 33.33%,#fff 66.66%,transparent 66.66%),linear-gradient(-45deg,transparent 33.33%,#fff 33.33%,#fff 66.66%,transparent 66.66%);background-size:14px 28px;background-position:0 -14px}
+.rc-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.rc-top b{font-weight:700}
+.rc-top svg{width:30px;height:30px;color:var(--navy)}
+.rc-title{font-family:var(--f-d);font-weight:600;font-size:22px;letter-spacing:-.02em;margin:18px 0 4px}
+.rc-sub{font-family:var(--f);font-size:14.5px;color:var(--muted)}
+.rc-hr{border:0;border-top:2px dashed #CFC9C0;margin:18px 0}
+.rc fieldset{border:0;margin:0 0 16px;padding:0;min-width:0}
+.rc legend,.rc .ll{display:block;padding:0;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.rc legend b,.rc .ll b{color:var(--orange-t)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{display:inline-flex;align-items:center;min-height:40px;padding:0 15px;border:1.5px solid var(--navy);border-radius:999px;font-family:var(--f);font-weight:600;font-size:14.5px;cursor:pointer;transition:background .2s,color .2s,transform .2s var(--spring)}
+.chips label:hover{transform:translateY(-1px)}
+.chips input:checked+label{background:var(--navy);color:#fff}
+.chips input:focus-visible+label{outline:3px solid var(--orange);outline-offset:2px}
+.chips.svc label{border-color:#CFC9C0;font-weight:500;font-size:14px;min-height:38px}
+.chips.svc input:checked+label{background:var(--orange);border-color:var(--orange);color:var(--ink);font-weight:600}
+.rc-line{display:grid;grid-template-columns:auto 1fr;align-items:end;gap:10px;margin-bottom:6px}
+.rc-line label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-bottom:12px;white-space:nowrap}
+.rc-line label b{color:var(--orange-t)}
+.rc-line input{border:0;border-bottom:2px dotted #B9B2A8;background:transparent;min-height:46px;padding:8px 2px;font-family:var(--f);font-size:17px;font-weight:600;color:var(--navy);border-radius:0;width:100%}
+.rc-line input::placeholder{color:#A3A7B7;font-weight:400}
+.rc-line input:focus{outline:none;border-bottom:2px solid var(--navy)}
+.fld.bad input{border-bottom-color:var(--error)}
+.err{display:none;font-family:var(--f);color:var(--error);font-size:13px;font-weight:600;margin:0 0 8px}
+.fld.bad+.err,.fld.bad .err{display:block}
+.rc-total{display:flex;align-items:baseline;gap:8px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;margin:18px 0 16px}
+.rc-total i{flex:1;border-bottom:2px dotted #B9B2A8;transform:translateY(-4px)}
+.rc-total b{font-family:var(--f-d);text-transform:none;letter-spacing:-.01em;font-size:15px;font-weight:600}
+.rc .btn{width:100%}
+.rc-note{font-family:var(--f);font-size:12.5px;color:var(--muted);text-align:center;margin-top:12px}
+.hp{position:absolute;left:-9999px}
+.spin{width:18px;height:18px;border-radius:50%;border:2px solid rgba(8,16,48,.25);border-top-color:var(--ink);animation:spin .8s linear infinite;display:none}
+.btn[aria-busy="true"]{pointer-events:none;opacity:.85}
+.btn[aria-busy="true"] .spin{display:inline-block}
+.btn[aria-busy="true"] .arr{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.f-alert{display:none;font-family:var(--f);background:#FCEAE5;color:var(--error);font-size:14px;font-weight:600;padding:10px 12px;margin-bottom:12px}
+.f-alert.on{display:block}
+.done{display:none;text-align:center;padding:16px 0 4px;position:relative}
+.sent .rc{display:none}
+.sent .done{display:block}
+.stamp{display:inline-block;margin:10px 0 18px;border:3px solid var(--orange);color:var(--orange-t);font-family:var(--f-d);font-weight:700;font-size:28px;letter-spacing:.06em;padding:8px 22px;border-radius:12px;transform:rotate(-8deg);animation:stamp .5s var(--spring)}
+@keyframes stamp{from{transform:rotate(-8deg) scale(2.2);opacity:0}to{transform:rotate(-8deg) scale(1);opacity:1}}
+.done h3{font-size:20px;margin-bottom:8px}
+.done p{font-family:var(--f);color:var(--muted);font-size:15px}
+.done .sum{text-align:left;font-size:13.5px;border-top:2px dashed #CFC9C0;border-bottom:2px dashed #CFC9C0;padding:12px 0;margin:16px 0}
+.done .sum div{display:flex;justify-content:space-between;gap:12px;padding:3px 0}
+.done .sum span{color:var(--muted)}
+.done .btn{margin-top:4px}
+
+/* ---------- sections ---------- */
+.sec{padding:130px 0;position:relative}
+#chaos{overflow:hidden}
+.sec.white{background:linear-gradient(180deg,var(--paper),#fff 240px,#fff calc(100% - 240px),var(--paper))}
+.sec.dark{background:var(--deep);color:var(--on-d)}
+.dark h2,.dark h3{color:#fff}
+.sh{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:56px;align-items:end;margin-bottom:64px}
+.sh .lede{margin-top:0}
+
+/* CHAOS / SYSTEM */
+.cs-head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;margin-bottom:56px}
+.switch{display:inline-flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 10px 8px 22px;cursor:pointer;font-family:var(--f-d);font-weight:600;font-size:17px;color:var(--navy);box-shadow:0 14px 30px -18px rgba(16,38,98,.4)}
+.switch .lbl{transition:color .3s,opacity .3s}
+.switch .track{position:relative;width:76px;height:40px;border-radius:999px;background:var(--sand);transition:background .4s}
+.switch .knob{position:absolute;top:4px;left:4px;width:32px;height:32px;border-radius:50%;background:var(--orange);transition:transform .5s var(--spring)}
+.switch[aria-checked="true"] .track{background:var(--navy)}
+.switch[aria-checked="true"] .knob{transform:translateX(36px)}
+.switch .l1{opacity:1}.switch .l2{opacity:.4}
+.switch[aria-checked="true"] .l1{opacity:.4}.switch[aria-checked="true"] .l2{opacity:1}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.note{position:relative;min-height:230px;padding:30px 28px;background:#FFFDF8;box-shadow:0 18px 36px -24px rgba(16,38,98,.45);transform:translate(var(--x),var(--y)) rotate(var(--r));transition:transform .9s var(--spring),background .6s,color .6s,box-shadow .6s;transition-delay:var(--d)}
+.note::before{content:"";position:absolute;top:-12px;left:50%;width:84px;height:24px;margin-left:-42px;background:rgba(202,174,153,.65);transform:rotate(var(--tr,-3deg));transition:opacity .4s}
+.note .n{font-family:var(--f-m);font-size:12.5px;color:var(--orange-t)}
+.note h3{font-size:20px;margin:16px 0 10px;transition:color .6s}
+.note p{font-size:15.5px;color:var(--muted);transition:color .6s}
+.note .face{transition:opacity .5s ease,transform .6s var(--ease)}
+.note{transition-property:transform,background-color,border-radius,box-shadow,color!important;transition-duration:.9s,.7s,.7s,.7s,.6s!important;transition-delay:var(--d)!important}
+@keyframes facein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.note .sys{position:absolute;inset:30px 28px;opacity:0;transform:translateY(8px)}
+.note .chk{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--orange);color:var(--ink)}
+.note .chk .i{width:16px;height:16px;stroke-width:2.6}
+.board.sys .note{transform:none;background:var(--navy);box-shadow:0 18px 36px -24px rgba(16,38,98,.9)}
+.board.sys .note::before{opacity:0}
+.board.sys .note .chaos{opacity:0;transform:translateY(-8px)}
+.board.sys .note .sys{opacity:1;transform:none;transition-delay:calc(var(--d) + .25s)}
+.board.sys .note h3{color:#fff}
+.board.sys .note p{color:var(--on-d2)}
+.board.sys .note .n{color:var(--orange)}
+.cs-foot{margin-top:56px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.cs-foot p{font-family:var(--f-d);font-weight:500;font-size:clamp(20px,2vw,28px);color:var(--navy);max-width:720px;letter-spacing:-.02em;line-height:1.25}
+
+/* CONFIGURATOR */
+.cfg{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:36px;align-items:start}
+.seg{display:inline-flex;background:var(--paper);border-radius:999px;padding:5px;margin-bottom:24px}
+.seg button{min-height:48px;padding:0 30px;border:0;border-radius:999px;background:transparent;font-family:var(--f-d);font-weight:600;font-size:16px;color:var(--navy);cursor:pointer;transition:background .25s,color .25s}
+.seg button[aria-selected="true"]{background:var(--navy);color:#fff}
+.cfg-list{display:grid;gap:10px}
+.cfg-list[hidden]{display:none}
+.row{border:1.5px solid var(--line);border-radius:22px;background:#fff;transition:border-color .25s,background .25s}
+.row.on{border-color:var(--navy);background:#F7F8FC}
+.row-h{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;padding:18px 20px}
+.ck{display:contents;cursor:pointer}
+.ck input{position:absolute;opacity:0;pointer-events:none}
+.ck .box{width:30px;height:30px;border-radius:50%;border:2px solid var(--navy);display:grid;place-items:center;color:transparent;transition:background .2s,color .2s;cursor:pointer}
+.ck .box .i{width:16px;height:16px;stroke-width:3}
+.ck input:checked+.box{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+.ck input:focus-visible+.box{outline:3px solid var(--orange);outline-offset:3px}
+.ck .t{cursor:pointer}
+.ck .t b{display:block;font-family:var(--f-d);font-weight:600;font-size:18px;color:var(--navy);letter-spacing:-.015em}
+.ck .t small{display:block;font-family:var(--f-m);font-size:12px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.03em}
+.more{border:0;background:var(--paper);border-radius:999px;min-height:40px;padding:0 16px;font-weight:600;font-size:14px;color:var(--navy);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.more .i{width:16px;height:16px;transition:transform .3s}
+.more[aria-expanded="true"] .i{transform:rotate(180deg)}
+.row ul{list-style:none;margin:0;padding:0 20px 20px 68px;display:grid;grid-template-columns:1fr 1fr;gap:6px 28px}
+.row ul[hidden]{display:none}
+.row li{font-size:15px;padding-left:18px;position:relative}
+.row li::before{content:"";position:absolute;left:0;top:.65em;width:8px;height:8px;border:1.5px solid var(--orange);border-radius:999px}
+.panel{position:sticky;top:calc(var(--hh) + 20px);background:var(--deep);color:#fff;border-radius:28px;padding:30px 28px}
+.panel h3{color:#fff;font-size:22px}
+.panel .cnt{font-family:var(--f-m);font-size:13px;color:var(--on-d2);margin-top:6px}
+.picked{list-style:none;margin:20px 0;padding:0;display:flex;flex-wrap:wrap;gap:6px;min-height:44px}
+.picked li{background:rgba(255,255,255,.1);border-radius:999px;padding:6px 12px;font-size:13.5px}
+.picked .empty{background:none;padding:0;color:var(--on-d2);font-size:14.5px}
+.panel .fld{margin-bottom:12px}
+.panel label{display:block;font-family:var(--f-m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--on-d2);margin-bottom:6px}
+.panel input{width:100%;min-height:50px;border-radius:14px;border:1.5px solid var(--line-d);background:rgba(255,255,255,.06);color:#fff;padding:0 16px;font-size:16px}
+.panel input::placeholder{color:#7F89A8}
+.panel input:focus{outline:none;border-color:var(--orange)}
+.panel .fld.bad input{border-color:#FF8A7A}
+.panel .err{color:#FF9B8C}
+.panel .btn{margin-top:8px}
+.panel .done p{color:var(--on-d2)}
+.panel .done h3{color:#fff}
+.panel .stamp{background:var(--deep);color:var(--orange)}
+.panel .sum{border-color:var(--line-d)}
+.panel .sum span{color:var(--on-d2)}
+
+/* PROCESS */
+.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.proc::before{content:"";position:absolute;left:0;right:0;top:34px;height:2px;background:repeating-linear-gradient(90deg,var(--navy) 0 10px,transparent 10px 18px)}
+.ps{position:relative;padding-right:28px}
+.ps .cap{position:relative;display:inline-flex;align-items:center;justify-content:center;height:68px;min-width:110px;padding:0 24px;border:2px solid var(--navy);border-radius:999px;background:var(--paper);font-family:var(--f-d);font-weight:600;font-size:24px;color:var(--navy)}
+.ps:last-child .cap{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+.ps h3{font-size:20px;margin:26px 0 10px}
+.ps p{font-size:15.5px;color:var(--muted)}
+.formula{margin-top:64px;display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:12px;font-family:var(--f-d);font-weight:500;font-size:clamp(13px,1.3vw,18px);color:var(--navy);letter-spacing:-.01em}
+.formula span{border:2px solid var(--navy);border-radius:999px;padding:12px 20px;white-space:nowrap;text-align:center;flex:1 1 auto}
+.formula i{font-style:normal;color:var(--orange-h);font-weight:700}
+.formula span.r{background:var(--navy);color:#fff}
+
+/* RESULTS */
+.res-g{display:grid;grid-template-columns:1.05fr 1fr 1fr;gap:20px}
+.rcard{background:#fff;border-radius:28px;padding:32px 30px;display:flex;flex-direction:column;min-height:440px;overflow:hidden;position:relative}
+.rcard.navy{background:var(--navy);color:var(--on-d2)}
+.rcard .k{font-family:var(--f-m);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.rcard.navy .k{color:var(--on-d2)}
+.rcard .big{font-family:var(--f-d);font-weight:600;font-size:clamp(54px,5.6vw,88px);line-height:.95;letter-spacing:-.05em;color:var(--navy);margin-top:18px}
+.rcard.navy .big{color:#fff}
+.rcard .big em{font-style:normal;color:var(--orange)}
+.rcard h3{font-size:19px;margin-top:auto;padding-top:24px}
+.rcard.navy h3{color:#fff}
+.rcard p{font-size:15px;margin-top:8px;color:var(--muted)}
+.rcard.navy p{color:var(--on-d2)}
+.vbars{display:flex;align-items:flex-end;gap:16px;height:150px;margin-top:26px}
+.vbars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;font-family:var(--f-m);font-size:12px;gap:8px}
+.vbars i{display:block;border-radius:14px 14px 4px 4px;background:rgba(255,255,255,.18);height:0;transition:height 1.2s var(--spring)}
+.vbars div:last-child i{background:var(--orange)}
+.in .vbars i{height:var(--h)}
+.hbars{margin-top:30px;display:grid;gap:18px}
+.hbars .lb{display:flex;justify-content:space-between;font-family:var(--f-m);font-size:13px;color:var(--navy);margin-bottom:8px}
+.hbars .tr{height:16px;border-radius:999px;background:var(--paper);overflow:hidden}
+.hbars .tr i{display:block;height:100%;border-radius:999px;background:var(--navy);width:0;transition:width 1.4s var(--ease)}
+.hbars .tr.o i{background:var(--orange);min-width:0}
+.in .hbars .tr i{width:var(--w)}
+.in .hbars .tr.o i{min-width:12px}
+.rcard .num{font-family:var(--f-d);font-weight:600;font-size:clamp(38px,3.6vw,56px);letter-spacing:-.04em;color:var(--navy);line-height:1;margin-top:18px}
+.rcard .num small{font-size:.4em;letter-spacing:0;color:var(--muted)}
+.curve{margin-top:22px;width:100%;height:160px}
+.curve .ax{stroke:var(--line);stroke-width:2;stroke-dasharray:6 6}
+.curve .ln{fill:none;stroke:var(--orange);stroke-width:5;stroke-linecap:round;stroke-dasharray:520;stroke-dashoffset:520;transition:stroke-dashoffset 1.8s var(--ease)}
+.in .curve .ln{stroke-dashoffset:0}
+.curve text{font-family:var(--f-m);font-size:12px;fill:var(--muted)}
+.ledger{margin-top:72px;background:#fff;border-radius:28px;padding:36px 34px;font-family:var(--f-m)}
+.ledger-h{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.ledger-h h3{font-size:clamp(22px,2.4vw,32px)}
+.ledger-h p{font-family:var(--f);color:var(--muted);max-width:420px;font-size:15.5px}
+.ledger table{width:100%;border-collapse:collapse;font-size:14.5px;color:var(--navy)}
+.ledger th{text-align:left;font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:10px 12px;border-bottom:2px solid var(--navy)}
+.ledger td{padding:16px 12px;border-bottom:1px dashed #CFC9C0;vertical-align:top}
+.ledger td:first-child{color:var(--orange-t);font-weight:700;width:60px}
+.ledger td.b{font-family:var(--f);font-weight:600;font-size:16px}
+.ledger tr:hover td{background:var(--paper)}
+.inds{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.inds span{font-family:var(--f);font-size:14px;font-weight:500;border:1.5px solid var(--navy);color:var(--navy);border-radius:999px;padding:6px 14px}
+
+/* MANIFESTO */
+.mani{padding:96px 0}
+.mani .words{font-family:var(--f-d);font-weight:500;font-size:clamp(22px,2.6vw,38px);line-height:1.25;letter-spacing:-.025em;max-width:980px;margin:0}
+.mani .w{color:rgba(255,255,255,.16);transition:color .35s}
+.mani .w.lit{color:#fff}
+.mani .w.acc.lit{color:var(--orange)}
+.mani .by{margin-top:30px;display:flex;align-items:center;gap:16px;color:var(--on-d2)}
+.mani .by img{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:50% 20%}
+.mani .by b{display:block;color:#fff;font-weight:600}
+
+/* FOUNDER */
+.fd{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:72px;align-items:center}
+.fd-ph{position:relative}
+.fd-ph .ph{border-radius:999px 999px 28px 28px;overflow:hidden;aspect-ratio:4/5}
+.fd-ph img{width:100%;height:100%;object-fit:cover}
+.fd-ph .badge{position:absolute;right:-18px;bottom:48px;background:var(--orange);color:var(--ink);border-radius:999px;padding:14px 22px;font-family:var(--f-d);font-weight:600;font-size:15px;transform:rotate(-4deg);box-shadow:0 14px 30px -14px rgba(0,0,0,.4)}
+.fd-ph .badge2{position:absolute;left:-18px;top:90px;background:#fff;color:var(--navy);border-radius:999px;padding:12px 20px;font-family:var(--f-m);font-size:13px;transform:rotate(3deg);box-shadow:0 14px 30px -14px rgba(0,0,0,.3)}
+.fd h2{font-size:clamp(34px,3.8vw,56px);letter-spacing:-.04em}
+.roles{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.roles span{border:1.5px solid var(--navy);border-radius:999px;padding:6px 14px;font-weight:600;font-size:14px;color:var(--navy)}
+.roles span:first-child{background:var(--navy);color:#fff}
+.fd .bio{display:grid;gap:14px;margin-top:28px}
+.fd blockquote{margin:30px 0 0;font-family:var(--f-d);font-weight:500;font-size:clamp(17px,1.45vw,20px);line-height:1.35;letter-spacing:-.02em;color:var(--navy);padding-left:24px;border-left:4px solid var(--orange)}
+.stairs-h{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin:110px 0 30px}
+.stairs-h h3{font-size:clamp(24px,2.6vw,36px)}
+.stairs-h p{font-family:var(--f-m);font-size:13px;color:var(--muted)}
+.stairs{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-items:end;height:460px}
+.st{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.st .tx{padding:0 4px 14px}
+.st .tx b{display:block;font-family:var(--f-d);font-weight:600;font-size:15px;color:var(--navy);letter-spacing:-.01em;line-height:1.2}
+.st .tx span{display:block;font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.4}
+.st .bar{height:0;border-radius:22px 22px 6px 6px;background:var(--navy);color:#fff;display:flex;align-items:flex-start;padding:14px;font-family:var(--f-m);font-size:12.5px;transition:height 1.1s var(--spring);transition-delay:var(--d);overflow:hidden}
+.st:last-child .bar{background:var(--orange);color:var(--ink);font-weight:700}
+.in .st .bar{height:var(--h)}
+
+/* TEAM */
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.mem{position:relative}
+.mem .pic{position:relative;aspect-ratio:3/4;border-radius:999px 999px 24px 24px;overflow:hidden;background:var(--navy)}
+.mem .pic img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.mem:hover .pic img{transform:scale(1.05)}
+.mono{position:absolute;inset:0;display:grid;place-items:center;background:var(--navy);color:#fff}
+.mem.alt .mono{background:var(--beige);color:var(--navy)}
+.mono svg{width:46%;height:46%;color:rgba(255,255,255,.55)}
+.mem.alt .mono svg{color:rgba(16,38,98,.55)}
+.mono::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:28px 28px}
+.mem.alt .mono::before{background-image:linear-gradient(rgba(16,38,98,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(16,38,98,.08) 1px,transparent 1px)}
+.mono span{position:relative;font-family:var(--f-d);font-weight:600;font-size:clamp(52px,5vw,76px);letter-spacing:-.04em}
+.mem .life{position:absolute;left:12px;right:12px;bottom:12px;background:#fff;border-radius:18px;padding:14px 16px;font-size:13.5px;line-height:1.45;color:var(--navy);transform:translateY(calc(100% + 16px));transition:transform .5s var(--spring)}
+.mem .life b{display:block;font-family:var(--f-m);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--orange-t);margin-bottom:4px}
+.mem:hover .life,.mem:focus-within .life{transform:none}
+.mem:hover .hint,.mem:focus-within .hint{opacity:0}
+.mem .hint{position:absolute;right:14px;bottom:14px;transition:opacity .3s;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;color:var(--navy);border:0;cursor:pointer}
+.mem .hint .i{width:18px;height:18px}
+.mem h3{font-size:19px;margin-top:20px}
+.mem .pos{display:inline-block;margin-top:10px;font-size:13.5px;font-weight:600;color:var(--navy);border:1.5px solid var(--navy);border-radius:999px;padding:4px 12px}
+.mem p{font-size:15px;color:var(--muted);margin-top:12px}
+.rest{margin-top:56px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--navy);color:var(--on-d2);border-radius:28px;padding:30px 34px}
+.rest .clock{font-family:var(--f-d);font-weight:600;font-size:clamp(40px,4.4vw,64px);color:var(--orange);letter-spacing:-.04em;line-height:1}
+.rest b{display:block;color:#fff;font-family:var(--f-d);font-weight:600;font-size:20px;margin-bottom:6px;letter-spacing:-.01em}
+
+/* PRINCIPLES */
+.prin{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line-d)}
+.pr{padding:30px 22px 0 0}
+.pr+.pr{padding-left:22px;border-left:1px solid var(--line-d)}
+.pr .n{font-family:var(--f-m);color:var(--orange);font-size:13px}
+.pr h3{font-size:18px;margin:16px 0 10px;line-height:1.2}
+.pr p{font-size:15px;color:var(--on-d2)}
+
+/* FAQ */
+.faq-g{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:start}
+.faq details{border-bottom:1.5px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:24px 0;font-family:var(--f-d);font-weight:500;font-size:18px;letter-spacing:-.015em;color:var(--navy)}
+.faq summary::-webkit-details-marker{display:none}
+.faq .pm{width:40px;height:40px;flex:none;border-radius:50%;border:1.5px solid var(--navy);display:grid;place-items:center;transition:background .2s,border-color .2s}
+.faq .pm .i{width:18px;height:18px;transition:transform .35s var(--spring)}
+.faq details[open] .pm{background:var(--orange);border-color:var(--orange)}
+.faq details[open] .pm .i{transform:rotate(45deg)}
+.faq details p{padding:0 56px 24px 0}
+
+/* CONTACT */
+.ct{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:72px;align-items:start}
+.bigtel{display:inline-block;white-space:nowrap;margin-top:34px;font-family:var(--f-d);font-weight:600;font-size:clamp(30px,3.6vw,50px);letter-spacing:-.04em;line-height:1;color:#fff;text-decoration:none;background:linear-gradient(var(--orange),var(--orange)) 0 100%/0 6px no-repeat;padding-bottom:10px;transition:background-size .5s var(--ease)}
+.bigtel:hover{background-size:100% 6px}
+.socials{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.socials a{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 22px 0 8px;border-radius:999px;border:1.5px solid var(--line-d);color:#fff;text-decoration:none;font-weight:600;transition:border-color .2s,background .2s}
+.socials a:hover{border-color:#fff;background:rgba(255,255,255,.05)}
+.socials .ic{width:42px;height:42px;border-radius:50%;background:var(--orange);color:var(--ink);display:grid;place-items:center}
+.socials .ic .i{width:19px;height:19px}
+.ct .hrs{margin-top:22px;font-family:var(--f-m);font-size:13.5px;color:var(--on-d2)}
+.ct .receipt{transform:rotate(-1.2deg)}
+.ct .receipt:hover,.ct .receipt:focus-within{transform:rotate(0)}
+
+.ftr{background:var(--ink);color:var(--on-d2);padding:34px 0;font-size:14px}
+.ftr .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.ftr{padding:48px 0}
+.ftr nav{display:flex;gap:20px;flex-wrap:wrap}
+.ftr a{color:var(--on-d2);text-decoration:none}
+.ftr a:hover{color:#fff}
+.ftr .brand,.ftr .brand:hover{color:#E6E8EE}
+
+.mcta{display:none}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+
+/* ================= WOW EFFECTS ================= */
+/* intro */
+#intro{position:fixed;inset:0;z-index:500;background:var(--deep);display:grid;place-items:center;transition:transform .8s cubic-bezier(.76,0,.24,1)}
+#intro.up{transform:translateY(-100%)}
+#intro .in-wrap{display:flex;flex-direction:column;align-items:center;gap:22px;color:#E6E8EE}
+#intro svg{width:110px;height:110px}
+#intro .mk{stroke-dasharray:420;stroke-dashoffset:420;animation:draw 1.1s var(--ease) forwards}
+#intro .wm{font-family:var(--f-logo);font-weight:600;letter-spacing:.14em;font-size:15px;opacity:0;animation:fadeup .6s .55s var(--ease) forwards}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* scroll progress */
+#prog{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--orange);transform-origin:0 50%;transform:scaleX(0);z-index:200;pointer-events:none}
+/* split headings: words rise from a mask */
+.sw{display:inline-block;overflow:hidden;vertical-align:top;padding:.3em .52em;margin:-.3em -.52em}
+.si{display:inline-block;transform:translateY(115%);transition:transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0) * 55ms)}
+.in .si{transform:none}
+/* pill oval draws itself */
+.pill::before{clip-path:inset(0 100% 0 0 round 999px);transition:clip-path .9s cubic-bezier(.65,0,.35,1) .45s}
+.in .pill::before{clip-path:inset(-4px -4px -4px -4px round 999px)}
+/* receipt prints out */
+.rv.in .receipt{animation:print 1.3s cubic-bezier(.3,.7,.2,1) .25s backwards}
+@keyframes print{from{clip-path:inset(0 0 100% 0);transform:translateY(-40px) rotate(0)}to{clip-path:inset(0 0 -20px 0);transform:translateY(0) rotate(1.2deg)}}
+.ct .rv.in .receipt{animation-name:print2}
+@keyframes print2{from{clip-path:inset(0 0 100% 0);transform:translateY(-40px)}to{clip-path:inset(0 0 -20px 0);transform:rotate(-1.2deg)}}
+/* hero spotlight + parallax */
+.spot{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(520px 520px at var(--mx,70%) var(--my,30%),rgba(251,104,53,.16),transparent 60%);transition:opacity .4s}
+.hero-mark{transition:translate .6s var(--ease)}
+/* tilt */
+.tilt{transition:transform .5s var(--ease);will-change:transform}
+/* band marquee */
+.band{background:var(--paper);padding:56px 0;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band .rowm{display:flex;width:max-content;gap:0;white-space:nowrap;will-change:transform}
+.band .rowm+.rowm{margin-top:18px}
+.band .rowm span{display:inline-flex;align-items:center;gap:36px;padding-right:36px;font-family:var(--f-d);font-weight:600;font-size:clamp(44px,7vw,110px);letter-spacing:-.04em;line-height:1.05;color:var(--navy)}
+.band .rowm.out span{color:transparent;-webkit-text-stroke:1.5px var(--navy)}
+.band .rowm span::after{content:"";width:.5em;height:.26em;border-radius:999px;border:.07em solid var(--orange);flex:none}
+.band .rowm.out span::after{background:var(--orange)}
+@media (prefers-reduced-motion:reduce){
+  #intro{display:none}
+  .si{transform:none}
+  .pill::before{clip-path:none}
+  .rv.in .receipt{animation:none}
+}
+
+
+/* ===== CTA after results ===== */
+.res-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:28px;padding:22px 24px;border-radius:20px;background:var(--paper)}
+.res-cta p{font-family:var(--f-d);font-weight:500;font-size:18px;color:var(--navy);letter-spacing:-.01em}
+/* ===== MODAL ===== */
+.modal{position:fixed;inset:0;z-index:400;display:grid;place-items:center;padding:20px}
+.modal[hidden]{display:none}
+.m-back{position:absolute;inset:0;background:rgba(8,16,48,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .35s}
+.m-box{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;width:min(980px,100%);max-height:calc(100vh - 40px);overflow:auto;background:var(--deep);border-radius:28px;box-shadow:0 50px 120px -30px rgba(0,0,0,.7);opacity:0;transform:translateY(30px) scale(.97);transition:opacity .4s var(--ease),transform .5s var(--spring)}
+.modal.open .m-back{opacity:1}
+.modal.open .m-box{opacity:1;transform:none}
+.m-x{position:absolute;right:16px;top:16px;z-index:3;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;display:grid;place-items:center;transition:background .2s,transform .3s var(--spring)}
+@media (hover:hover){.m-x:hover{background:var(--orange);color:var(--ink);transform:rotate(90deg)}}
+.m-x:active{background:var(--orange);color:var(--ink)}
+.m-side{padding:44px 36px;color:var(--on-d2);display:flex;flex-direction:column;gap:22px;background:radial-gradient(500px 400px at 0% 0%,#16348A,transparent 70%)}
+.m-side .tag{color:var(--on-d2)}.m-side .tag b{color:var(--orange)}
+.m-side h2{color:#fff;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em}
+.m-trust{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.m-trust li{padding-left:28px;position:relative;font-size:15.5px}
+.m-trust li::before{content:"";position:absolute;left:0;top:.3em;width:16px;height:10px;border-radius:999px;border:2px solid var(--orange)}
+.m-trust b{color:#fff}
+.m-who{margin-top:auto;display:flex;align-items:center;gap:14px;font-size:14px}
+.m-who img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:50% 25%}
+.m-who b{display:block;color:#fff;font-weight:600}
+.m-form{padding:26px 26px 40px;background:var(--paper)}
+.m-form .receipt{transform:none}
+@media (max-width:760px){
+  .modal{padding:0;place-items:end stretch}
+  .m-box{grid-template-columns:1fr;border-radius:24px 24px 0 0;max-height:94vh;transform:translateY(100%)}
+  .m-side{padding:62px 20px 10px;gap:14px}
+  .m-x{top:10px;right:10px;width:42px;height:42px}
+  .m-trust,.m-who{display:none}
+  .m-form{padding:16px 14px 30px}
+}
+
+/* ===== round 3 ===== */
+.hdr-tg{width:46px;height:46px;flex:none;border-radius:50%;display:grid;place-items:center;color:#fff;border:1px solid var(--line-d);transition:background .25s,color .25s,transform .35s var(--spring)}
+.hdr-tg svg{width:20px;height:20px;margin-left:-2px}
+.hdr-tg:hover{background:#2AABEE;border-color:#2AABEE;transform:translateY(-2px)}
+.btn-tg{background:#2AABEE;color:#fff;gap:10px}
+.btn-tg:hover{background:#1E96D4}
+.btn-tg .i{width:18px;height:18px}
+.pf .btn-tg{margin-top:10px}
+.rc-btns{display:flex;gap:10px;align-items:stretch}
+.rc-btns .btn-o{flex:1 1 auto;width:auto;min-width:0}
+.rc .rc-tg{flex:0 0 auto;width:auto;padding:0 18px}
+.fd-acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn-story{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.btn-story:hover{background:var(--navy);color:#fff}
+.qz-res .acts{align-items:center}
+.story .m-x{background:var(--navy);color:#fff}
+.s-box{display:flex;flex-direction:column;width:min(1120px,100%);background:var(--paper);overflow:hidden}
+.s-body{overflow:auto;padding:44px 44px 30px;flex:1}
+.s-head{display:flex;gap:22px;align-items:center;padding-right:50px}
+.s-head img{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:50% 22%;flex:none;border:3px solid #fff;box-shadow:0 10px 30px -12px rgba(16,38,98,.5)}
+.s-head h2{font-size:clamp(28px,3vw,42px);letter-spacing:-.03em;color:var(--navy)}
+.s-head p{color:var(--muted);margin-top:8px;max-width:620px}
+.s-text{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:30px;color:var(--ink);font-size:16px;line-height:1.6}
+.s-wins{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.s-wins li{background:#fff;border-radius:20px;padding:20px;display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line)}
+.s-wins b{flex:none;font-family:var(--f-d);font-weight:600;font-size:30px;line-height:1;color:var(--orange);letter-spacing:-.04em;min-width:96px}
+.s-wins span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.story .stairs-h{margin:44px 0 20px}
+.story .stairs{height:400px}
+.s-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 44px;background:var(--deep);color:#fff}
+.s-cta p{font-family:var(--f-d);font-weight:500;font-size:18px;letter-spacing:-.01em}
+.s-cta div{display:flex;gap:10px;flex-wrap:wrap}
+@media (max-width:980px){.s-text{grid-template-columns:1fr;gap:12px}.s-wins{grid-template-columns:1fr}.story .stairs{height:auto}}
+@media (max-width:760px){
+  .hdr-tg{width:44px;height:44px}
+  .s-box{max-height:94vh}
+  .s-body{padding:26px 18px 20px}
+  .s-head{gap:14px;padding-right:44px}.s-head img{width:60px;height:60px}
+  .s-head p{font-size:14.5px}
+  .s-cta{padding:14px 18px 20px}.s-cta p{font-size:15.5px}
+  .s-cta div{width:100%}.s-cta .btn-o{flex:1}
+  .mani{padding:70px 0}
+  .rc-btns{flex-direction:column}.rc .rc-tg{width:100%}
+  .s-wins b{min-width:84px;font-size:26px}
+}
+
+@media (min-width:761px){.faq-g .h2{white-space:nowrap}}
+/* process merged into services */
+.pw{display:grid;grid-template-columns:1fr;gap:36px;padding:0 0 56px;margin:-30px 0 72px;border-bottom:1px solid var(--line)}
+.pw-h{font-size:clamp(28px,2.9vw,42px);line-height:1.1;letter-spacing:-.03em;color:var(--navy)}
+.pw-h .o{color:var(--orange)}
+.pw-s{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:none}
+.pw-s li{position:relative;padding:26px 26px 28px;border-radius:24px;min-height:170px;background:var(--paper);display:flex;flex-direction:column;gap:4px}
+.pw-s li:last-child{background:var(--navy);color:#fff}
+.pw-s b{font-family:var(--f-m);font-size:13px;margin-bottom:auto;color:var(--orange-t);font-weight:500}
+.pw-s li:last-child b{color:var(--orange)}
+.pw-s span{font-family:var(--f-d);font-weight:600;font-size:22px;margin-top:18px;letter-spacing:-.01em;color:var(--navy)}
+.pw-s li:last-child span{color:#fff}
+.pw-s small{font-size:15.5px;color:var(--muted);line-height:1.45;margin-top:4px}
+.pw-s li:last-child small{color:var(--on-d2)}
+.pw-s li:not(:last-child)::after{content:"→";position:absolute;right:-11px;top:50%;transform:translateY(-50%);z-index:1;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--orange);display:grid;place-items:center;font-size:13px;box-shadow:0 2px 8px rgba(16,38,98,.12)}
+@media (max-width:1180px){.pw{grid-template-columns:1fr;gap:24px}}
+@media (max-width:760px){.pw{padding-bottom:40px;margin-bottom:56px;gap:24px}.pw-s{grid-template-columns:1fr 1fr;gap:10px}.pw-s li{padding:16px;min-height:0}.pw-s span{font-size:17px;margin-top:10px}.pw-s small{font-size:13px}.pw-s li:not(:last-child)::after{display:none}}
+/* ===== cursor ring ===== */
+#cur{position:fixed;left:0;top:0;width:38px;height:38px;margin:-19px 0 0 -19px;border:1.5px solid var(--orange);border-radius:50%;pointer-events:none;z-index:600;transition:width .25s var(--ease),height .25s var(--ease),margin .25s var(--ease),background .25s,opacity .3s;opacity:0}
+#cur.on{opacity:1}
+#cur.big{width:70px;height:70px;margin:-35px 0 0 -35px;background:rgba(251,104,53,.12)}
+/* ===== photo curtain reveal ===== */
+.fd-ph .ph{position:relative}
+.fd-ph .ph::after,.mem .pic::after{content:"";position:absolute;inset:0;background:var(--orange);transform-origin:50% 0;transition:transform 1.1s cubic-bezier(.77,0,.18,1) .15s;pointer-events:none;z-index:2}
+.rv.in .ph::after,.mem.in .pic::after{transform:scaleY(0)}
+.fd-ph .ph img,.mem .pic img{transform:scale(1.18);transition:transform 1.6s cubic-bezier(.2,.7,.2,1) .2s}
+.rv.in .ph img,.mem.in .pic img{transform:none}
+.mem.in:hover .pic img{transform:scale(1.05);transition-delay:0s;transition-duration:.8s}
+/* ===== stagger children ===== */
+.stg>*{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--k,0) * 90ms)}
+.in .stg>*,.stg.in>*{opacity:1;transform:none}
+/* ===== button shine ===== */
+.btn-o,.btn-n{position:relative;overflow:hidden;isolation:isolate}
+.btn-o::after,.btn-n::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);z-index:-1;transition:left .7s var(--ease)}
+.btn-o:hover::after,.btn-n:hover::after{left:130%}
+/* ===== manifesto circular reveal ===== */
+.mani{clip-path:circle(var(--cr,150%) at 50% 50%)}
+/* ===== confetti ===== */
+.cf{position:fixed;z-index:700;pointer-events:none;border-radius:999px}
+/* parallax helpers */
+.hero-mark{translate:var(--hx,0px) calc(var(--hy,0px) + var(--py,0px))}
+.fd-ph .badge,.fd-ph .badge2{translate:0 var(--py,0px)}
+@media (prefers-reduced-motion:reduce){
+  .stg>*{opacity:1;transform:none}
+  .fd-ph .ph::after,.mem .pic::after{display:none}
+  .fd-ph .ph img,.mem .pic img{transform:none}
+  .mani{clip-path:none}
+  .m-box{transform:none}
+}
+
+
+/* ===== EFFECTS v3 ===== */
+#fx{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+/* odometer digits */
+.odo{display:inline-flex;overflow:hidden;height:1em;line-height:1;vertical-align:top}
+.odo>span{display:flex;flex-direction:column;transition:transform 1.6s cubic-bezier(.2,.9,.2,1);transition-delay:calc(var(--j,0)*90ms)}
+.odo>span>i{font-style:normal;height:1em;display:block}
+/* marker sweep */
+mark{background:linear-gradient(transparent 58%,rgba(251,104,53,.35) 58%) 0 0/0% 100% no-repeat;color:inherit;transition:background-size 1.2s cubic-bezier(.65,0,.35,1) .6s}
+.rv.in mark{background-size:100% 100%}
+/* draggable notes */
+.board:not(.sys) .note{cursor:grab;touch-action:none}
+.note.drag{cursor:grabbing;transition:none!important;z-index:5;box-shadow:0 34px 60px -24px rgba(16,38,98,.55)}
+.drag-hint{font-family:var(--f-m);font-size:12.5px;color:var(--muted);margin-top:14px;display:flex;gap:8px;align-items:center}
+.board.sys~.drag-hint,.sys-on .drag-hint{opacity:0}
+/* touch devices: each note flips on its own (scroll / tap); desktop keeps switch + drag */
+.cs-m{display:none}
+#chaos.flipmode .cs-d{display:none}
+#chaos.flipmode .cs-m{display:inline}
+#chaos.flipmode #sw,#chaos.flipmode .drag-hint{display:none}
+#chaos.flipmode .note{display:grid;touch-action:manipulation;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:none!important;backface-visibility:hidden}
+#chaos.flipmode .note::before,#chaos.flipmode .note::after{transition:none!important}
+#chaos.flipmode .note .face{grid-area:1/1;position:relative;inset:auto;display:block;opacity:1;transform:none;transition:none!important;animation:none!important}
+#chaos.flipmode .note .sys{visibility:hidden}
+#chaos.flipmode .note.on{transform:none;border-radius:22px;background:rgba(16,34,92,.55);backdrop-filter:blur(26px) saturate(1.3);-webkit-backdrop-filter:blur(26px) saturate(1.3);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 60px -30px rgba(8,16,48,.55)}
+#chaos.flipmode .note.on::before{opacity:0}
+#chaos.flipmode .note.on::after{opacity:1}
+#chaos.flipmode .note.on .chaos{visibility:hidden}
+#chaos.flipmode .note.on .sys{visibility:visible}
+#chaos.flipmode .note.on h3{color:#fff}
+#chaos.flipmode .note.on p{color:var(--on-d2)}
+#chaos.flipmode .note.on .n{color:var(--orange)}
+#chaos.flipmode .note:focus-visible{outline:2px solid var(--orange);outline-offset:4px}
+/* spotlight border on dark/cards */
+.glow{position:relative}
+.glow::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(260px circle at var(--gx,50%) var(--gy,50%),rgba(251,104,53,.22),transparent 60%)}
+.glow:hover::after{opacity:1}
+/* stairs hover */
+.st .bar{transition:height 1.1s var(--spring),transform .35s var(--spring),background .3s}
+.st:hover .bar{transform:translateY(-8px)}
+.st:not(:last-child):hover .bar{background:#1B3A8C}
+/* text scramble */
+.scr{font-variant-numeric:tabular-nums}
+/* ripple */
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(4);opacity:0}}
+@media (prefers-reduced-motion:reduce){#fx{display:none}mark{background-size:100% 100%}}
+
+
+/* ================= QUIZ ================= */
+.quiz{background:linear-gradient(180deg,var(--paper),#EDE7E0 50%,var(--paper))}
+.qz{display:grid;grid-template-columns:1.1fr .9fr;background:#fff;border-radius:32px;overflow:hidden;box-shadow:0 40px 80px -50px rgba(16,38,98,.45);min-height:460px}
+.qz-l{padding:44px 48px;display:flex;flex-direction:column}
+.qz-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:30px}
+.qz-step{font-family:var(--f-m);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--orange-t)}
+.qz-dots{display:flex;gap:6px}
+.qz-dots i{width:28px;height:8px;border-radius:999px;background:var(--sand);transition:background .4s,width .4s var(--spring)}
+.qz-dots i.on{background:var(--navy)}.qz-dots i.cur{background:var(--orange);width:44px}
+.qz-stage{position:relative;flex:1}
+.qz-q{animation:qin .55s var(--ease) both}
+.qz-q.out{animation:qout .3s var(--ease) both}
+@keyframes qin{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes qout{to{opacity:0;transform:translateX(-40px)}}
+.qz-q h3{font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em;margin-bottom:26px}
+.qz-opts{display:grid;gap:10px}
+.qz-opt{display:flex;align-items:center;gap:16px;width:100%;text-align:left;min-height:62px;padding:12px 20px;border:1.5px solid var(--line);border-radius:18px;background:var(--paper);font-family:var(--f);font-weight:600;font-size:16.5px;color:var(--navy);cursor:pointer;transition:border-color .2s,background .2s,transform .25s var(--spring)}
+.qz-opt:hover{border-color:var(--navy);transform:translateX(6px);background:#fff}
+.qz-opt .k{flex:none;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--navy);display:grid;place-items:center;font-family:var(--f-m);font-size:13px}
+.qz-opt.sel{background:var(--navy);color:#fff;border-color:var(--navy)}
+.qz-opt.sel .k{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+.qz-opts.two{grid-template-columns:1fr 1fr}
+.qz-opts.two .qz-opt{justify-content:center;font-family:var(--f-d);font-size:22px;min-height:96px}
+.qz-back{align-self:flex-start;margin-top:22px;border:0;background:none;display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--muted);cursor:pointer;min-height:44px}
+.qz-back .i{transform:scaleX(-1);width:18px;height:18px}
+.qz-r{background:var(--deep);position:relative;display:grid;place-items:center;padding:40px;overflow:hidden}
+.qz-r::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px}
+.qz-meter{position:relative;width:100%}
+.qz-lbl{font-family:var(--f-m);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--on-d2)}
+.qz-wave{width:100%;height:200px;margin:18px 0 8px;overflow:visible}
+.qz-axis{stroke:rgba(255,255,255,.15);stroke-dasharray:4 6}
+#qz-path{fill:none;stroke:var(--orange);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+#qz-glow{fill:none;stroke:rgba(251,104,53,.28);stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
+.qz-scale{display:flex;justify-content:space-between;font-family:var(--f-m);font-size:12px;color:var(--on-d2)}
+.qz-score{margin-top:22px;display:flex;align-items:baseline;gap:6px;color:#fff}
+.qz-score b{font-family:var(--f-d);font-weight:600;font-size:64px;letter-spacing:-.05em;line-height:1}
+.qz-score span{font-family:var(--f-m);color:var(--on-d2)}
+/* result */
+.qz-res h3{font-size:clamp(26px,2.6vw,38px);letter-spacing:-.03em}
+.qz-res .lvl{display:inline-block;margin-bottom:14px;padding:6px 14px;border-radius:999px;font-family:var(--f-m);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;background:var(--sand);color:var(--navy)}
+.qz-res .lvl.bad{background:#FCE3DA;color:var(--orange-t)}.qz-res .lvl.ok{background:#E3EAF8}
+.qz-res p.d{margin:12px 0 18px;color:var(--muted)}
+.qz-res ul{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:10px}
+.qz-res li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px}
+.qz-res li b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--orange);color:var(--ink);display:grid;place-items:center;font-family:var(--f-m);font-size:12px}
+.qz-res .acts{display:flex;gap:10px;flex-wrap:wrap}
+.qz-res .again{border:0;background:none;font-weight:600;color:var(--muted);cursor:pointer;min-height:48px;padding:0 10px}
+@media (max-width:980px){.qz{grid-template-columns:1fr}.qz-r{order:-1;padding:26px 24px}.qz-wave{height:110px;margin:10px 0 4px}.qz-score{margin-top:10px}.qz-score b{font-size:44px}}
+@media (max-width:640px){.qz-l{padding:28px 20px}.qz{border-radius:24px}.qz-opts.two .qz-opt{min-height:72px;font-size:19px}.qz-dots i{width:18px}.qz-dots i.cur{width:30px}}
+
+/* ================= TEAM FLIP CARDS ================= */
+.tm-wrap{position:relative}
+.flip-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3*20px)/4);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 4px 30px;margin:-6px -4px 0;scrollbar-width:none}
+.flip-track::-webkit-scrollbar{display:none}
+.fc{scroll-snap-align:start;perspective:1600px;min-height:590px}
+.fc-in{position:relative;height:100%;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.2,.4,1)}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:26px;display:flex;flex-direction:column;overflow:hidden}
+.fc-f{background:#fff;border:1px solid var(--line)}
+.fc-b{background:var(--navy);color:var(--on-d2);transform:rotateY(180deg);padding:28px 26px 22px}
+.fc.alt .fc-b{background:var(--deep)}
+.fc .pic{position:relative;aspect-ratio:auto;flex:0 0 58%;border-radius:999px 999px 0 0;margin:14px 14px 0;overflow:hidden;background:var(--navy)}
+.fc .pic img{width:100%;height:100%;object-fit:cover;filter:brightness(1.06) saturate(1.04);transition:filter .7s var(--ease),transform 1s var(--ease)}
+.fc:hover .pic img{filter:none;transform:scale(1.04)}
+.fc .mono{position:absolute;inset:0;display:grid;place-items:center;background:var(--navy)}
+.fc.alt .mono{background:var(--beige)}
+.fc .mono svg{width:46%;height:46%;color:rgba(255,255,255,.55)}
+.fc.alt .mono svg{color:rgba(16,38,98,.55)}
+.fc-n{position:absolute;left:16px;bottom:14px;font-family:var(--f-m);font-size:12.5px;color:#fff;background:rgba(8,16,48,.55);backdrop-filter:blur(6px);border-radius:999px;padding:4px 10px}
+.fc-body{padding:20px 22px 0;flex:1}
+.fc-body h3{font-size:20px;letter-spacing:-.02em}
+.fc .pos{display:block;margin-top:8px;font-family:var(--f-m);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--orange-t)}
+.fc .hook{margin-top:14px;font-family:var(--f-d);font-weight:500;font-size:16.5px;line-height:1.3;color:var(--navy);letter-spacing:-.01em}
+.fc-go{margin:16px 22px 20px;padding:14px 0 0;border:0;border-top:1px solid var(--line);background:none;display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:15px;color:var(--navy);cursor:pointer;min-height:56px}
+.fc-go i{width:44px;height:44px;border-radius:50%;background:var(--orange);color:var(--ink);display:grid;place-items:center;transition:transform .5s var(--spring)}
+.fc-go:hover i{transform:rotate(180deg)}
+.fc-go .i{width:19px;height:19px}
+.fc-b h3{color:#fff;font-size:20px}
+.fc-b .pos2{font-size:13.5px;color:var(--on-d2);margin-top:4px}
+.fc-b dl{margin:18px 0 0;overflow:auto;flex:1}
+.fc-b dt{font-family:var(--f-m);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--beige);margin-top:16px}
+.fc-b dt:first-child{margin-top:0}
+.fc-b dd{margin:6px 0 0;font-size:14.5px;line-height:1.5;color:#E4E8F4}
+.fc-b dd.cr{font-family:var(--f-d);font-weight:500;font-style:normal;color:#fff;font-size:15px;line-height:1.35}
+.fc-b .fc-go{margin:14px 0 0;border-top-color:var(--line-d);color:#fff}
+.fc-b .fc-go i{background:var(--beige)}
+.tm-nav{display:flex;align-items:center;gap:16px;margin-top:8px}
+.tm-bar{flex:1;height:3px;border-radius:999px;background:var(--line);overflow:hidden}
+.tm-bar i{display:block;height:100%;width:30%;background:var(--navy);border-radius:999px;transition:transform .3s,width .3s}
+.tm-btn{width:54px;height:54px;border-radius:50%;border:1.5px solid var(--navy);background:none;color:var(--navy);display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s,transform .3s var(--spring)}
+.tm-btn:hover{transform:scale(1.08)}
+.tm-btn.on{background:var(--navy);color:#fff}
+.tm-btn:disabled{opacity:.35;cursor:default;transform:none}
+@media (max-width:1180px){.flip-track{grid-auto-columns:calc((100% - 2*20px)/3)}}
+@media (max-width:980px){.flip-track{grid-auto-columns:calc((100% - 20px)/2)}}
+@media (max-width:640px){.flip-track{grid-auto-columns:84%;gap:14px}.fc{min-height:600px}.fc .pic{flex:0 0 300px}.fc-body{display:flex;flex-direction:column}.fc-f .fc-go{margin-top:auto}}
+@media (prefers-reduced-motion:reduce){.fc-in{transition:none}}
+
+/* ================= FAQ ask card ================= */
+.ask{margin-top:36px;border-radius:24px;padding:26px;max-width:440px}
+.ask-h{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+.ask-h img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:3px solid #fff;flex:none}
+.ask-h b{display:block;font-family:var(--f-d);font-weight:600;font-size:19px;color:#fff;letter-spacing:-.02em}
+.ask-h span{font-size:15px;color:var(--on-d2)}
+.ask-alt{display:block;text-align:center;margin-top:12px;font-size:14.5px;color:var(--on-d2);text-decoration:none}
+.ask-alt b{color:#fff}
+.ask .btn{background:var(--beige)!important;color:var(--navy)!important}
+.ask .btn:hover{background:#D9C1AF!important}
+
+@media (max-width:1180px){
+  .hdr-ph{display:none}
+  .nav a{padding:8px 11px;font-size:14px}
+  .team{grid-template-columns:repeat(2,1fr)}
+  .prin{grid-template-columns:repeat(3,1fr);row-gap:30px}
+  .pr:nth-child(4){padding-left:0;border-left:0}
+}
+@media (max-width:980px){
+  :root{--hh:68px}
+  .nav,.hdr .btn{display:none}
+  .burger{display:inline-flex}
+  .wrap{padding:0 24px}
+  .hero-g,.sh,.cfg,.fd,.faq-g,.ct{grid-template-columns:1fr;gap:44px}
+  .sh{gap:16px;margin-bottom:44px}
+  .hero-mark{width:480px;height:480px;right:-160px}
+  .stats{grid-template-columns:1fr 1fr;margin-top:56px}
+  .stat:nth-child(3){padding-left:0;border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line-d)}
+  .sec{padding:90px 0}
+  .board{grid-template-columns:1fr 1fr}
+  .panel{position:relative;top:0}
+  .proc{grid-template-columns:1fr 1fr;row-gap:44px}
+  .proc::before{display:none}
+  .formula{flex-wrap:wrap;justify-content:flex-start}
+  .formula span{flex:0 1 auto}
+  .res-g{grid-template-columns:1fr}
+  .rcard{min-height:0}
+  .stairs{grid-template-columns:repeat(3,1fr);height:auto;row-gap:24px;align-items:stretch}
+  .st{height:300px}
+  .fd-ph{max-width:460px}
+  .mcta{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:90;gap:8px;padding:8px;border-radius:999px;background:var(--deep);box-shadow:0 20px 50px -20px rgba(0,0,0,.6);transform:translateY(140%);transition:transform .4s var(--spring)}
+  .mcta.on{transform:none}
+  .mcta .btn-o{flex:1;min-height:48px}
+  .mcta .rd{width:48px;min-height:48px;padding:0;border:1px solid var(--line-d);color:#fff}
+  .ftr{padding-bottom:calc(100px + env(safe-area-inset-bottom))}
+  .mem .life{transform:none;position:relative;left:auto;right:auto;bottom:auto;margin-top:-28px;margin-left:10px;margin-right:10px;box-shadow:0 10px 24px -14px rgba(16,38,98,.4)}
+  .mem .hint{display:none}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .hdr .brand{--m:38px}
+  .hero{padding-top:calc(var(--hh) + 32px)}
+  .hero-cta{flex-direction:column}
+  .hero-cta .btn{width:100%}
+  .chips-row{display:none}
+  .receipt{transform:none;padding:22px 18px 20px}
+  .stat,.stat+.stat{padding:22px 12px 24px 0}
+  .stat:nth-child(2n){padding-left:12px}
+  .board{grid-template-columns:1fr;gap:18px}
+  .note{min-height:0}
+  .note .sys{position:relative;inset:auto;display:none}
+  .board.sys .note .chaos{display:none}
+  .board.sys .note .sys{display:block;animation:facein .6s var(--ease) both;animation-delay:var(--d)}
+  .board:not(.sys) .note .chaos{animation:facein .6s var(--ease) both;animation-delay:var(--d)}
+  .switch{width:100%;justify-content:space-between}
+  .row-h{grid-template-columns:auto 1fr;padding:16px}
+  .row-h .more{grid-column:2;justify-self:start}
+  .row ul{grid-template-columns:1fr;padding:0 16px 18px 16px}
+  .seg{display:flex}.seg button{flex:1;padding:0 12px}
+  .proc{grid-template-columns:1fr 1fr;row-gap:30px}
+  .ps{padding-right:12px}
+  .ps .cap{height:52px;min-width:80px;padding:0 18px}
+  .ps h3{font-size:18px;margin:16px 0 6px}
+  .ps p{font-size:14.5px}
+  .formula{flex-direction:column;align-items:stretch;gap:6px;font-size:15px}
+  .formula span{text-align:center;padding:12px 16px}
+  .formula i{text-align:center;line-height:1}
+  .stairs{grid-template-columns:1fr;gap:10px}
+  .st{height:auto;flex-direction:row;align-items:stretch;gap:12px}
+  .st .tx{flex:1;padding:6px 0;order:2}
+  .st .bar{height:auto!important;width:calc(52px + var(--h) * .62);min-height:64px;border-radius:6px 18px 18px 6px;order:1;flex:none;align-items:center;justify-content:center;padding:6px;text-align:center;opacity:1}
+  .in .st .bar{width:calc(52px + var(--h) * .62)}
+  .st{display:grid!important;grid-template-columns:150px 1fr;align-items:center}
+  .st .bar{justify-self:start;font-size:10.5px;white-space:nowrap;padding:4px!important;letter-spacing:-.02em}
+  .st:hover .bar{transform:none}
+  .team{grid-template-columns:1fr 1fr;gap:14px}
+  .mem h3{font-size:16px}
+  .mem p{display:none}
+  .mem .life{font-size:12.5px;padding:10px 12px}
+  .rest{grid-template-columns:1fr;gap:12px;padding:24px}
+  .prin{grid-template-columns:1fr}
+  .pr,.pr+.pr{padding:22px 0 0;border-left:0}
+  .ledger{padding:24px 16px;overflow-x:auto}
+  .ledger table{min-width:520px}
+  .faq details p{padding-right:0}
+  .fd-ph .badge{right:-6px;bottom:20px;translate:none!important}
+  .fd-ph .badge2{left:-6px;top:-16px;translate:none!important}
+  .fd-ph{margin-top:20px}
+  .rest .clock{font-size:44px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .rv{opacity:1;transform:none}
+  .hero-mark .mk{stroke-dashoffset:0}
+  .mani .w{color:#fff}
+}
+/* ================= MATTE url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")ASS (frosted) ================= */
+:root{--gl-n:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");--gd-n:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.glass-l,.pw-s li:not(:last-child),.rcard:not(.navy),.row,.ledger,.res-cta,.qz-l,.fc-f,.switch,.svc-cta,.seg{
+  background:var(--gl-n),linear-gradient(150deg,rgba(255,255,255,.62),rgba(255,255,255,.34))!important;
+  backdrop-filter:blur(26px) saturate(1.25);-webkit-backdrop-filter:blur(26px) saturate(1.25);
+  border:1px solid rgba(255,255,255,.7)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 24px 50px -30px rgba(16,38,98,.35)!important}
+.row.on{background:var(--gl-n),linear-gradient(150deg,rgba(255,255,255,.8),rgba(232,236,247,.55))!important;border-color:rgba(16,38,98,.55)!important}
+.qz{background:transparent!important}
+.svc-cta{border-style:solid!important}
+.glass-d,.pw-s li:last-child,.rcard.navy,.panel,.qz-r,.fc-b,.rest,.m-side{
+  background:var(--gd-n),linear-gradient(150deg,rgba(20,42,112,.9),rgba(10,20,60,.88))!important;
+  backdrop-filter:blur(26px) saturate(1.3);-webkit-backdrop-filter:blur(26px) saturate(1.3);
+  border:1px solid rgba(255,255,255,.14)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 60px -30px rgba(8,16,48,.55)!important;color:var(--on-d2)}
+.board.sys .note{border-radius:22px;background-color:rgba(16,34,92,.55);backdrop-filter:blur(26px) saturate(1.3);-webkit-backdrop-filter:blur(26px) saturate(1.3);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 60px -30px rgba(8,16,48,.55)}
+.note::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--gd-n),linear-gradient(150deg,rgba(20,42,112,.9),rgba(10,20,60,.86));border:1px solid rgba(255,255,255,.14);opacity:0;transition:opacity .7s;transition-delay:var(--d);pointer-events:none;z-index:0}
+.board.sys .note::after{opacity:1}
+.note .chaos{position:relative;z-index:1}.note .sys{z-index:1}
+.orbs{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent)}
+.orbs i{position:absolute;width:var(--s);height:var(--s);left:var(--l);top:var(--t);border-radius:50%;background:radial-gradient(circle,var(--c) 0%,transparent 68%);animation:orb var(--d) ease-in-out infinite alternate}
+@keyframes orb{to{transform:translate(var(--mx),var(--my)) scale(1.12)}}
+.sec>.wrap{position:relative;z-index:1}
+main{overflow-x:clip}
+@media (prefers-reduced-motion:reduce){.orbs i{animation:none}}
+
+</style>
+</head>
+<body>
+<div id="intro" aria-hidden="true"><div class="in-wrap"><svg viewBox="0 0 100 100"><use href="#logo"/></svg><span class="wm">HAPPY FINANCE</span></div></div>
+<div id="prog" aria-hidden="true"></div>
+<a class="skip" href="#main">Перейти до змісту</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 100 100"><g class="mk"><rect x="1.65" y="1.65" width="96.7" height="96.7"/><path d="M37 62.9V72A8 8 0 0 1 21 72V29.5A8 8 0 0 1 37 29.5V53A10.6 10.6 0 0 0 56.8 58.3"/><path d="M63 43.6V29.5A8 8 0 0 1 79 29.5V72A8 8 0 0 1 63 72V54A12 12 0 0 0 41.4 46.8"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+  <symbol id="i-flip" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="HAPPY FINANCE — фінансово-бухгалтерський супровід, на головну"><svg aria-hidden="true"><use href="#logo"/></svg><span class="w" aria-hidden="true">HAPPY<br>FINANCE</span></a>
+    <nav class="nav" aria-label="Основна навігація">
+      <a href="#chaos">Задачі</a>
+      <a href="#quiz">Тест</a>
+      <a href="#services">Послуги</a>
+      <a href="#results">Досвід</a>
+      <a href="#about">Про компанію</a>
+      <a href="#team">Команда</a>
+      <a href="#contacts">Контакти</a>
+    </nav>
+    <div class="hdr-r">
+      <a class="hdr-tg" href="https://t.me/MariiaPanchenko_ua" data-tgtext="Вітаю, Маріє! Пишу з сайту HAPPY FINANCE." target="_blank" rel="noopener" aria-label="Написати в Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2 1.8 11.7c-1-.3-1-1 .2-1.5L20.5 3.1c.9-.3 1.6.2 1.4 1.2z"/></svg></a>
+      <a class="hdr-ph" href="tel:+380663568040">066 356 80 40</a>
+      <a class="btn btn-o" href="#lead" data-popup="Шапка">Залишити заявку</a>
+      <button class="burger" id="burger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mnav"><svg class="i"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Мобільне меню">
+  <a class="l" href="#chaos">Задачі</a><a class="l" href="#quiz">Тест «Пульс бізнесу»</a><a class="l" href="#services">Послуги</a><a class="l" href="#results">Досвід</a><a class="l" href="#about">Про компанію</a><a class="l" href="#team">Команда</a><a class="l" href="#contacts">Контакти</a>
+  <a class="btn btn-o btn-block" href="#lead" data-popup="Меню">Залишити заявку</a>
+  <a class="btn btn-line btn-block" style="color:#fff;margin-top:10px" href="tel:+380663568040">066 356 80 40</a>
+</nav>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="spot" aria-hidden="true"></div>
+  <svg class="hero-mark" aria-hidden="true"><use href="#logo"/></svg>
+  <div class="wrap">
+    <div class="hero-g">
+      <div class="rv">
+        <h1>Фінансова <span class="pill">впевненість</span> для вашого бізнесу</h1>
+        <p class="sub">Беремо на себе бухгалтерський, податковий, кадровий та управлінський облік — і перетворюємо хаос у документах на систему, за якою можна керувати бізнесом.</p>
+        <div class="hero-cta">
+          <a class="btn btn-o" href="#services">Зібрати свій супровід <svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-line" href="#chaos">Як ми працюємо</a>
+        </div>
+        <div class="chips-row" aria-label="Напрямки"><span>облік ФОП</span><span>облік ТОВ</span><span>ПДВ</span><span>кадри</span><span>P&amp;L · Cashflow</span><span>фінмоніторинг</span></div>
+      </div>
+      <div class="rv" id="lead"></div>
+    </div>
+    <div class="stats rv">
+      <div class="stat"><b data-count="7">7</b><span>років — і всі клієнти прийшли за рекомендаціями</span></div>
+      <div class="stat"><b><span data-count="25">25</span><em>+</em></b><span>бізнесів на постійному супроводі</span></div>
+      <div class="stat"><b><em>×</em><span data-count="4">4</span></b><span>зростання товарообігу підприємства під керівництвом засновниці</span></div>
+      <div class="stat"><b data-count="300">300</b><span>працівників — масштаб управлінського досвіду</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAOS → SYSTEM ============ -->
+<section class="sec" id="chaos">
+  <div class="wrap">
+    <div class="cs-head rv">
+      <div>
+        <h2 class="h2">Знайомі <span class="pill">ситуації?</span></h2>
+        <p class="lede"><span class="cs-d">Перемкніть — і подивіться, як кожна з них виглядає після роботи з нами.</span><span class="cs-m">Гортайте — записки по черзі перевертаються й показують, як ця ситуація виглядає після роботи з нами. Можна й торкнутися будь-якої.</span></p>
+      </div>
+      <button class="switch" id="sw" role="switch" aria-checked="false" aria-label="Показати систему замість хаосу">
+        <span class="lbl l1">Хаос</span><span class="track"><span class="knob"></span></span><span class="lbl l2">Система</span>
+      </button>
+    </div>
+    <div class="board" id="board">
+      <article class="note" style="--x:-6px;--y:10px;--r:-3deg;--d:0s;--tr:4deg"><div class="face chaos"><span class="n">01 / проблема</span><h3>Штрафи та пропущені строки</h3><p>Податки сплачені не вчасно, звіти — в останній день, ліміт ФОП під загрозою.</p></div><div class="face sys"><span class="chk"><svg class="i"><use href="#i-check"/></svg></span><h3>Строки під контролем</h3><p>Даємо реквізити, контролюємо сплату, ведемо книгу доходів і стежимо за лімітом.</p></div></article>
+      <article class="note" style="--x:8px;--y:-14px;--r:2.5deg;--d:.08s"><div class="face chaos"><span class="n">02 / проблема</span><h3>Заблоковані податкові накладні</h3><p>ПН зупинені, гроші заморожені, контрагенти нервують.</p></div><div class="face sys"><span class="chk"><svg class="i"><use href="#i-check"/></svg></span><h3>ПДВ без нервів</h3><p>Реєструємо податкові накладні, розблоковуємо їх і подаємо звітність з ПДВ.</p></div></article>
+      <article class="note" style="--x:-4px;--y:18px;--r:-1.5deg;--d:.16s;--tr:-6deg"><div class="face chaos"><span class="n">03 / проблема</span><h3>Банк вимагає пояснень</h3><p>Запит з фінмоніторингу, рахунок можуть обмежити — а що відповідати, незрозуміло.</p></div><div class="face sys"><span class="chk"><svg class="i"><use href="#i-check"/></svg></span><h3>Відповідь банку готова</h3><p>Працюємо із запитами фінмоніторингу будь-якої складності: пояснення та документи.</p></div></article>
+      <article class="note" style="--x:12px;--y:4px;--r:3.5deg;--d:.24s"><div class="face chaos"><span class="n">04 / проблема</span><h3>Не видно реального прибутку</h3><p>Гроші на рахунку є, а скільки бізнес заробляє насправді — невідомо.</p></div><div class="face sys"><span class="chk"><svg class="i"><use href="#i-check"/></svg></span><h3>Цифри для рішень</h3><p>P&amp;L, Cashflow, Balance і звіти по підрозділах — ви бачите стан бізнесу.</p></div></article>
+      <article class="note" style="--x:-10px;--y:-8px;--r:-4deg;--d:.32s;--tr:5deg"><div class="face chaos"><span class="n">05 / проблема</span><h3>Хаос у документах</h3><p>Первинка не зібрана, акти звірок не сходяться, усе тримається на пам’яті людей.</p></div><div class="face sys"><span class="chk"><svg class="i"><use href="#i-check"/></svg></span><h3>Зручний документообіг</h3><p>Підбираємо документообіг під ваш бізнес і розставляємо точки контролю.</p></div></article>
+      <article class="note" style="--x:6px;--y:12px;--r:2deg;--d:.4s"><div class="face chaos"><span class="n">06 / проблема</span><h3>Нестачі та втрати</h3><p>Склад, каса, підзвітні — втрати помічаєте, коли вже пізно.</p></div><div class="face sys"><span class="chk"><svg class="i"><use href="#i-check"/></svg></span><h3>Система контролю</h3><p>Так ми скоротили нестачі з 1,5 млн до 10–12 тис. грн на місяць.</p></div></article>
+    </div>
+    <p class="drag-hint" id="dhint">✋ Записки можна перетягувати — спробуйте навести «порядок» самі, або натисніть перемикач</p>
+    <div class="cs-foot rv">
+      <p>Ми не приносимо клієнтам проблеми — у будь-якій ситуації даємо <span class="o" style="white-space:nowrap">варіанти рішень</span>.</p>
+      <a class="btn btn-n" href="#lead" data-popup="Хаос → система">Розповісти про свою ситуацію <svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ: ІНДЕКС СПОКОЮ ============ -->
+<section class="sec quiz" id="quiz">
+  <div class="wrap">
+    <div class="sh rv">
+      <div><h2 class="h2">Наскільки спокійно <span class="pill">вашому бізнесу?</span></h2></div>
+      <p class="lede">П’ять коротких запитань — і ви побачите свій індекс фінансового спокою та що варто налагодити першим.</p>
+    </div>
+    <div class="qz rv" id="qz">
+      <div class="qz-l">
+        <div class="qz-top"><span class="qz-step" id="qz-step">Питання 1 з 5</span><div class="qz-dots" id="qz-dots"></div></div>
+        <div class="qz-stage" id="qz-stage" aria-live="polite"></div>
+        <button class="qz-back" id="qz-back" type="button" hidden><svg class="i"><use href="#i-arrow"/></svg>Назад</button>
+      </div>
+      <div class="qz-r" aria-hidden="true">
+        <div class="qz-meter">
+          <span class="qz-lbl">пульс вашого бізнесу</span>
+          <svg class="qz-wave" viewBox="0 0 400 200" preserveAspectRatio="none"><line x1="0" y1="100" x2="400" y2="100" class="qz-axis"/><path id="qz-glow" d=""/><path id="qz-path" d=""/></svg>
+          <div class="qz-scale"><span>хаос</span><span>система</span></div>
+          <div class="qz-score"><b id="qz-num">—</b><span>/100</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIGURATOR ============ -->
+<section class="sec white" id="services">
+  <div class="wrap">
+    <div class="pw rv" id="process">
+      <h2 class="pw-h">Спочатку аналіз<br><span class="o">потім система</span></h2>
+      <ol class="pw-s">
+        <li><b>01</b><span>Знайомство</span><small>Обговорюємо бізнес, форму оподаткування та ваш запит</small></li>
+        <li><b>02</b><span>Аналіз</span><small>Дивимось реальні операції й шукаємо вузькі місця</small></li>
+        <li><b>03</b><span>Система</span><small>Налаштовуємо документообіг і точки контролю</small></li>
+        <li><b>04</b><span>Супровід</span><small>Щомісяця ведемо облік — ви бачите цифри для рішень</small></li>
+      </ol>
+    </div>
+    <div class="sh rv">
+      <div><h2 class="h2">Зберіть свій <span class="pill">супровід</span></h2></div>
+      <p class="lede">Позначте те, що потрібно вашому бізнесу, — і надішліть запит. Ми порахуємо вартість і запропонуємо формат роботи.</p>
+    </div>
+    <div class="cfg">
+      <div class="rv">
+        <div class="seg" role="tablist" aria-label="Форма бізнесу">
+          <button role="tab" id="t-fop" aria-controls="l-fop" aria-selected="true">ФОП</button>
+          <button role="tab" id="t-tov" aria-controls="l-tov" aria-selected="false" tabindex="-1">ТОВ</button>
+        </div>
+        <div class="cfg-list" id="l-fop" role="tabpanel" aria-labelledby="t-fop"></div>
+        <div class="cfg-list" id="l-tov" role="tabpanel" aria-labelledby="t-tov" hidden></div>
+      </div>
+      <aside class="panel rv" id="panel" aria-live="polite">
+        <form class="pf" novalidate>
+          <h3>Ваш запит</h3>
+          <p class="cnt"><span id="p-biz">ФОП</span> · обрано: <span id="p-n">0</span></p>
+          <ul class="picked" id="picked"><li class="empty">Позначте напрямки ліворуч ←</li></ul>
+          <div class="f-alert" role="alert"></div>
+          <div class="fld"><label for="p-name">Ім’я</label><input id="p-name" name="name" autocomplete="name" placeholder="Олена"><p class="err">Вкажіть, як до вас звертатися</p></div>
+          <div class="fld"><label for="p-phone">Телефон</label><input id="p-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 або інший код країни"><p class="err">Перевірте номер телефону</p></div>
+          <input class="hp" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-o btn-block" type="submit"><span class="spin" aria-hidden="true"></span>Надіслати запит<svg class="i arr"><use href="#i-arrow"/></svg></button>
+        </form>
+        <div class="done" tabindex="-1"><span class="stamp">ПРИЙНЯТО</span><h3>Дякуємо!</h3><p>Ми зв’яжемося з вами в робочий час.</p><div class="sum"></div><button class="btn btn-line btn-block" type="button" data-reset style="color:#fff">Новий запит</button></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section class="sec" id="results" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sh rv">
+      <div><h2 class="h2">Кого ми <span class="pill">ведемо</span></h2></div>
+      <p class="lede">Від ФОП на єдиному податку до виробництва зі штатом 50 людей. Усі клієнти прийшли за рекомендаціями.</p>
+    </div>
+    <div class="ledger rv">
+      <table>
+        <thead><tr><th>№</th><th>Сфера</th><th>Форма</th><th>Штат</th><th>Що ведемо</th></tr></thead>
+        <tbody>
+          <tr><td>001</td><td class="b">Виробництво</td><td>ТОВ</td><td>50 осіб</td><td>Повний бухгалтерський + управлінський облік</td></tr>
+          <tr><td>002</td><td class="b">Агровиробництво</td><td>ТОВ</td><td>до 10</td><td>Бухгалтерський супровід</td></tr>
+          <tr><td>003</td><td class="b">Автошкола</td><td>ТОВ</td><td>до 20</td><td>Бухгалтерський супровід</td></tr>
+          <tr><td>004</td><td class="b">Імпорт товарів</td><td>ТОВ</td><td>до 10</td><td>Облік ЗЕД, бухгалтерський супровід</td></tr>
+          <tr><td>005</td><td class="b">Послуги</td><td>ФОП з ПДВ</td><td>—</td><td>Облік, ПДВ, податкові накладні</td></tr>
+          <tr><td>006</td><td class="b">Послуги · 20 клієнтів</td><td>ФОП</td><td>—</td><td>Щомісячний бухгалтерський супровід</td></tr>
+        </tbody>
+      </table>
+      <div class="res-cta"><p>Хочете таку ж прозорість у цифрах свого бізнесу?</p><a class="btn btn-o" href="#lead" data-popup="Результати">Хочу такий результат <svg class="i"><use href="#i-arrow"/></svg></a></div>
+      <div class="inds"><span>Виробництво</span><span>Агро</span><span>Імпорт / експорт</span><span>Дистрибуція</span><span>Ритейл</span><span>Ресторани та кав’ярні</span><span>Освіта</span><span>Послуги</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="sec dark mani" id="mani">
+  <div class="wrap">
+    <p class="words" id="words">Бухгалтерія — це не просто документи для податкової. Це ваш *спокій* *і* *безпека* — зараз і в майбутньому. Без цифр управління — це не управління, *а* *ілюзія*.</p>
+    <div class="by"><img src="img/founder.jpg" alt="" width="48" height="48"><div><b>Марія Панченко</b>засновниця HAPPY FINANCE</div></div>
+  </div>
+</section>
+
+<!-- ============ FOUNDER ============ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="fd">
+      <div class="fd-ph rv">
+        <div class="ph"><img src="img/founder-smile.jpg" width="960" height="1200" alt="Марія Панченко, засновниця HAPPY FINANCE" loading="lazy"></div>
+        <span class="badge">кризова менеджерка</span>
+        <span class="badge2">фінансова експертка</span>
+      </div>
+      <div class="rv">
+        <h2 style="margin-top:18px">Марія<br>Панченко</h2>
+        <div class="roles"><span>Засновниця HAPPY FINANCE</span><span>Фінансова експертка</span><span>Кризова менеджерка</span></div>
+        <div class="bio">
+          <p>Мій шлях почався з бухгалтерського обліку й поступово привів до <mark>фінансового та операційного управління</mark>, керівництва підприємствами та антикризового менеджменту.</p>
+          <p>Компанія, чесно кажучи, створилася сама. Я ніколи не мріяла про власну справу — здавалося, ще рано, ще треба вчитися. У декреті тато попросив вести його бухгалтерію, далі прийшли клієнти за рекомендаціями — і за 7 років це стало <mark>HAPPY FINANCE</mark>.</p>
+        </div>
+        <blockquote>Моя мета — допомагати власникам бачити за цифрами можливості, перетворювати хаос на зрозумілу систему й створювати фінансову основу для впевненого розвитку.</blockquote>
+        <div class="fd-acts"><a class="btn btn-n" href="#lead" data-popup="Засновниця">Обговорити бізнес з Марією <svg class="i"><use href="#i-arrow"/></svg></a><button class="btn btn-story" type="button" data-story>Історія Марії <svg class="i"><use href="#i-arrow"/></svg></button></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="sec white" id="team">
+  <div class="wrap">
+    <div class="sh rv">
+      <div><h2 class="h2">Люди, які ведуть <span class="pill">ваш облік</span></h2></div>
+      <p class="lede">У кожної — свій напрямок і практичний досвід. Натисніть «Детальніше», щоб перевернути картку й дізнатися, що саме вона робить для вас.</p>
+    </div>
+    <div class="tm-wrap rv">
+      <div class="flip-track" id="teamg" tabindex="0" aria-label="Команда — гортайте картки"></div>
+      <div class="tm-nav"><button class="tm-btn" id="tm-prev" type="button" aria-label="Попередні"><svg class="i" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button><div class="tm-bar"><i id="tm-bar"></i></div><button class="tm-btn on" id="tm-next" type="button" aria-label="Наступні"><svg class="i"><use href="#i-arrow"/></svg></button></div>
+    </div>
+    <div class="rest rv">
+      <span class="clock">17:00</span>
+      <div><b>«Добре працює той, хто добре відпочиває»</b>Команда не працює у вихідні та після 17:00. Це відповідальність власниці — організувати роботу так, щоб усе для клієнтів виконувалось якісно й вчасно, у робочий час.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap faq-g">
+    <div class="rv"><h2 class="h2">Часті <span class="pill">запитання</span></h2><p class="lede">Коротко про те, що нас найчастіше питають власники бізнесу.</p>
+      <div class="ask glass-d">
+        <div class="ask-h"><img src="img/founder-smile.jpg" alt="" width="64" height="64"><div><b>Не знайшли відповіді?</b><span>Напишіть мені в Telegram — відповім у робочий час.</span></div></div>
+        <a class="btn btn-n btn-block" href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener"><svg class="i"><use href="#i-send"/></svg>Написати в Telegram</a>
+        <a class="ask-alt" href="tel:+380663568040">або зателефонуйте: <b>066 356 80 40</b></a>
+      </div></div>
+    <div class="faq rv">
+      <details><summary>Чи потрібно приїжджати до офісу?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Ні. Реєстрацію ФОП і ТОВ проводимо онлайн, без участі власника. Зміну КВЕДів, роботу в ПРРО та щомісячний супровід ведемо дистанційно.</p></details>
+      <details><summary>У мене вже є бухгалтер. Чим допоможете?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Проводимо ревізію бухгалтерії та фінвідділу, знаходимо проблемні точки, підвищуємо кваліфікацію бухгалтерів і фінансистів. Можемо вести управлінський облік для власника паралельно.</p></details>
+      <details><summary>Банк вимагає документи з фінмоніторингу. Що&nbsp;робити?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Залиште заявку з позначкою «Фінмоніторинг». Ми працюємо із запитами банків будь-якої складності.</p></details>
+      <details><summary>Заблокували податкові накладні — допоможете?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Так. Реєструємо податкові накладні, займаємося їх розблокуванням і подаємо звітність з ПДВ.</p></details>
+      <details><summary>З якими системами оподаткування працюєте?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Єдиний податок, загальна система, з ПДВ і без ПДВ, експорт та імпорт.</p></details>
+      <details><summary>Ви лише ведете бухгалтерію?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><p>Ні. Будуємо управлінський облік (P&amp;L, Cashflow, Balance), організаційну структуру, документообіг і точки контролю, автоматизуємо облік у CRM.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec dark" id="contacts">
+  <div class="wrap ct">
+    <div class="rv">
+      <h2 class="h2">Почнімо з <span class="pill">розмови</span></h2>
+      <p class="lede">Зателефонуйте або залиште заявку — поставимо кілька уточнюючих питань і запропонуємо формат супроводу.</p>
+      <a class="bigtel" href="tel:+380663568040">066 356 80 40</a>
+      <div class="socials">
+        <a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener"><span class="ic"><svg class="i"><use href="#i-send"/></svg></span>@MariiaPanchenko_ua</a>
+        <a href="https://instagram.com/Mariia_Panchenko_ua" target="_blank" rel="noopener"><span class="ic"><svg class="i"><use href="#i-insta"/></svg></span>@Mariia_Panchenko_ua</a>
+      </div>
+      <p class="hrs">Пн–Пт · до 17:00 · відповідаємо в робочий час</p>
+    </div>
+    <div class="rv" id="lead2"></div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <a href="#top" class="brand full" style="--m:58px" aria-label="HAPPY FINANCE — на початок"><svg aria-hidden="true"><use href="#logo"/></svg><span class="w" aria-hidden="true">HAPPY<br>FINANCE</span><span class="t" aria-hidden="true">фінансово-бухгалтерський супровід</span></a>
+    <nav aria-label="Нижня навігація"><a href="#services">Послуги</a><a href="#results">Досвід</a><a href="#about">Про компанію</a><a href="#team">Команда</a><a href="#contacts">Контакти</a></nav>
+    <span>© <span id="yr"></span> HAPPY FINANCE · <a href="oferta.html">Договір оферти</a> · <a href="privacy.html">Політика конфіденційності</a></span>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" hidden>
+  <div class="m-back" data-close></div>
+  <div class="m-box">
+    <button class="m-x" type="button" data-close aria-label="Закрити"><svg class="i"><use href="#i-x"/></svg></button>
+    <div class="m-side">
+      <h2 id="m-title">Розкажіть про бізнес — <span class="o">ми запропонуємо рішення</span></h2>
+      <ul class="m-trust">
+        <li><b>7 років</b> супроводу бізнесу</li>
+        <li><b>25+</b> компаній і ФОП на обслуговуванні</li>
+        <li><b>Рішення,</b> а не проблеми — у будь-якій ситуації</li>
+      </ul>
+      <div class="m-who"><img src="img/founder-smile.jpg" alt="" width="52" height="52"><span><b>Марія Панченко</b>засновниця, фінансова експертка</span></div>
+    </div>
+    <div class="m-form" id="lead3"></div>
+  </div>
+</div>
+<div class="modal story" id="story" role="dialog" aria-modal="true" aria-labelledby="s-title" hidden>
+  <div class="m-back" data-sclose></div>
+  <div class="m-box s-box">
+    <button class="m-x" type="button" data-sclose aria-label="Закрити"><svg class="i"><use href="#i-x"/></svg></button>
+    <div class="s-body">
+      <div class="s-head">
+        <img src="img/founder-smile.jpg" alt="" width="88" height="88">
+        <div><h2 id="s-title">Історія <span class="pill">Марії</span></h2><p>Від операторки в 20 років — до фінансової директорки компанії на 200+ людей і власної справи.</p></div>
+      </div>
+      <div class="s-text">
+        <p>Марія почала працювати в 20 років, паралельно з навчанням: первинні документи, податкові накладні, акти звірки. Далі — каса, банк і звіти по 16 філіях, касова дисципліна мережі аптек Fozzy Pharm.</p>
+        <p>Потім вона керувала кафе на 50 людей: перевела облік із зошитів у 1С, запустила оптові продажі та експорт до Ізраїлю. Як фінансова директорка дистрибуційної компанії на 200+ працівників створила фінвідділ з нуля.</p>
+      </div>
+      <ul class="s-wins">
+        <li><b>×4</b><span>у 4 рази виріс товарообіг підприємства після перебудови фінансів і процесів</span></li>
+        <li><b>−99%</b><span>нестачі на складі скоротилися з 1,5 млн до 10–12 тис. грн на місяць</span></li>
+        <li><b>+₴</b><span>компанію вивели зі збитків у прибуток: аналіз витрат і управлінський облік</span></li>
+      </ul>
+    <div class="stairs-h"><h3>Кар’єрні <span class="pill">сходинки</span></h3><p>масштаб відповідальності →</p></div>
+    <div class="stairs" id="st-bars" role="list">
+      <div class="st" role="listitem" style="--h:16%;--d:0s"><div class="tx"><b>Операторка</b><span>«Спецторг», Київ. Первинка, ПН, акти звірки — з 20 років, разом із навчанням</span></div><div class="bar">старт</div></div>
+      <div class="st" role="listitem" style="--h:30%;--d:.1s"><div class="tx"><b>Старша бухгалтерка</b><span>Каса, банк, авансові звіти по 16 філіях; згодом головбух магазину</span></div><div class="bar">16 філій</div></div>
+      <div class="st" role="listitem" style="--h:44%;--d:.2s"><div class="tx"><b>Fozzy Pharm</b><span>Касова дисципліна мережі аптек. Навчання й інструкції для фармацевтів</span></div><div class="bar">мережа аптек</div></div>
+      <div class="st" role="listitem" style="--h:60%;--d:.3s"><div class="tx"><b>Директорка кафе</b><span>Облік із зошитів у 1С, кондитерський цех, оптові продажі, експорт до Ізраїлю</span></div><div class="bar">50 людей</div></div>
+      <div class="st" role="listitem" style="--h:80%;--d:.4s"><div class="tx"><b>Фінансова директорка</b><span>Дистрибуція: фінвідділ з нуля, нестачі з 1,5 млн до 10–12 тис. грн/міс</span></div><div class="bar">200+ людей</div></div>
+      <div class="st" role="listitem" style="--h:100%;--d:.5s"><div class="tx"><b>HAPPY FINANCE</b><span>Власна компанія, що виросла з рекомендацій клієнтів</span></div><div class="bar">25+ бізнесів</div></div>
+    </div>
+    </div>
+    <div class="s-cta">
+      <p>Хочете, щоб Марія подивилась на ваш бізнес?</p>
+      <div><a class="btn btn-o" href="#lead" data-popup="Історія Марії">Залишити заявку <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </div>
+</div>
+<div class="mcta" id="mcta">
+  <a class="btn rd" href="tel:+380663568040" aria-label="Зателефонувати"><svg class="i"><use href="#i-phone"/></svg></a>
+  <a class="btn btn-o" href="#lead" data-popup="Мобільна панель">Залишити заявку</a>
+  <a class="btn rd" href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener" aria-label="Написати в Telegram"><svg class="i"><use href="#i-send"/></svg></a>
+</div>
+
+<script>
+/* ================= НАЛАШТУВАННЯ ================= */
+const CONFIG = {
+  // Куди надсилати заявки (POST JSON): CRM, вебхук Make / Zapier / n8n, Formspree
+  // або сервер, що пересилає заявки Марії в Telegram / на email.
+  // Порожньо = демо-режим: клієнт бачить «Прийнято», але заявка нікуди не йде.
+  endpoint: '/api/lead'
+};
+
+const QUICK = { // послуги для швидкої заявки-«чека»
+  'ФОП':  ['Відкриття ФОП','Бухсупровід','Кадри','Фінмоніторинг','CRM / фінсупровід','Закриття ФОП'],
+  'ТОВ':  ['Відкриття ТОВ','Бухсупровід','ПДВ / ПН','Кадри','Управлінський облік','Оргструктура','Ревізія / навчання'],
+  'Інше': ['Консультація','Управлінський облік','Оргструктура','Ревізія / навчання']
+};
+
+const CATALOG = {
+  fop: [
+    {t:'Відкриття ФОП', s:'онлайн · без участі власника', items:['Підбір КВЕДів','Підбір оптимальної системи оподаткування','Онлайн-реєстрація ФОП без участі власника']},
+    {t:'Щомісячний бухгалтерський супровід', s:'11 послуг', items:['Аудит особистого кабінету в податковій','Реквізити для сплати податків','Контроль своєчасності та правильності сплати','Щомісячна перевірка банківської виписки','Контроль ліміту доходу за вашою групою','Книга обліку доходів ФОП','Онлайн-зміна КВЕДів за потреби','Реєстрація ПРРО і віддалена робота в ПРРО','Рахунки, акти, видаткові накладні','Шаблони договорів послуг і реалізації','Звіти в податкову, акти звірок']},
+    {t:'Фінансовий супровід', s:'CRM · бізнес-процеси', items:['Автоматизація обліку в CRM-системах','Структура компанії та бізнес-процеси','Фінансові документи та звіти під запит власника']},
+    {t:'Кадровий облік', s:'ФОП з працівниками', items:['Прийняття на роботу, зокрема під гранти','Трудові договори','Зарплата і табель робочого часу','Лікарняні, декретні','Звільнення','Звіти']},
+    {t:'Фінансовий моніторинг у банку', s:'будь-якої складності', items:['Відповіді на запити банку','Пояснення та пакет документів']},
+    {t:'Закриття ФОП', s:'під ключ', items:['Фінальна звітність і закриття ФОП']}
+  ],
+  tov: [
+    {t:'Відкриття ТОВ', s:'онлайн · модельний статут', items:['Підбір КВЕДів','Підбір оптимальної системи оподаткування','Онлайн-реєстрація за модельним статутом']},
+    {t:'Повний бухгалтерський супровід', s:'ЄП · загальна · ПДВ · ЗЕД', items:['Первинка: рахунки, видаткові, акти, договори, ТТН, ПРРО','Клієнт-банк: платежі та проведення в програмі','Усі господарські операції, контроль взаєморозрахунків','Кадри: прийняття (і під гранти), зарплата, лікарняні, декретні','ПДВ: реєстрація і розблокування ПН, звіти','Звіти в податкову, статистику, ПФУ']},
+    {t:'Управлінський облік для власника', s:'P&L · Cashflow · Balance', items:['P&L, Cashflow, Balance','Бланки звітів для контролю підрозділів','Аудит бізнес-процесів у команді','Пошук і виправлення проблемних точок','Оптимізація процесів і збільшення прибутку']},
+    {t:'Оргструктура та документообіг', s:'система управління', items:['Організаційна структура компанії','Документообіг під реалії роботи','Точки контролю для власника']},
+    {t:'Ревізія фінвідділу та бухобліку', s:'аудит команди', items:['Ревізія роботи фінансового відділу','Перевірка бухгалтерського обліку']},
+    {t:'Навчання бухгалтерів і фінансистів', s:'підвищення кваліфікації', items:['Підвищення кваліфікації бухгалтерів','Навчання фінансистів']}
+  ]
+};
+
+/* Команда: photo — шлях до фото або '' (тоді показується монограма) */
+const TEAM = [
+  {photo:'img/founder.jpg', name:'Марія Панченко', pos:'Засновниця, фінансова експертка', hook:'Бачить ваш бізнес очима власника',
+   forYou:'Не просто звіти, а цифри для рішень: де прибуток, куди йдуть гроші і де бізнес їх втрачає.',
+   exp:'Фінансова директорка дистрибуції на 200+ людей, досвід управління підприємством близько 300 працівників, зростання товарообігу ×4.',
+   credo:'Даю варіанти рішень, а не проблеми', life:'Головні цінності в роботі — любов до людей і до бізнесу.'},
+  {photo:'img/team-1.jpg', name:'Євгенія Мазепа', pos:'Головна бухгалтерка', hook:'Тримає весь облік компанії в одних руках',
+   forYou:'Бухгалтерський, податковий і управлінський облік веде людина, яка бачить усю картину. Звіти — вчасно, звірки з податковою — на ній.',
+   exp:'Одночасно вела ТОВ на загальній системі, ТОВ на єдиному податку та кілька ФОП, працювала фінансовою директоркою.',
+   credo:'Вміти проговорити будь-яке питання й ухвалити правильне рішення', life:'17 років захоплюється настільними іграми, закінчила кулінарні курси, любить подорожі й тварин: удома кіт і собака.'},
+  {photo:'', name:'Юлія Авер’янова', pos:'Бухгалтерка з заробітної плати', hook:'Зарплата і кадри — без вашої участі',
+   forYou:'Нарахування зарплати, лікарняні, декретні, табелі та звіти за персонал — вчасно і без помилок.',
+   exp:'У бухгалтерії з 2003 року: від касирки до головної бухгалтерки, понад 15 років — бухгалтерка виробничо-комерційного підприємства.',
+   credo:'Постійне навчання й самовдосконалення', life:'У вільний час — спорт. Цінує фізичне та ментальне благополуччя.'},
+  {photo:'img/team-2.jpg', name:'Карина Омельченко', pos:'Первинні документи та ПРРО', hook:'Первинка й каса в порядку щодня',
+   forYou:'Рахунки, акти, накладні та ПРРО — оформлені вчасно, щоб у кінці місяця не було сюрпризів.',
+   exp:'Знає роздріб зсередини — працювала продавчинею й адміністраторкою, потім бухгалтеркою агропідприємства.',
+   credo:'Хороший колектив, баланс між роботою і сім’єю, розвиток', life:'Любить читати й довгі прогулянки. Найважливіше — сім’я, спокій і комфорт.'},
+  {photo:'', name:'Надія Гончаренко', pos:'Закупівлі та первинні документи', hook:'Документи від постачальників — зібрані вчасно',
+   forYou:'Акти звірок сходяться, документи від контрагентів не губляться, бізнес готовий до податкових перевірок.',
+   exp:'Категорійна менеджерка в МХП, керівниця відділу обліку первинної документації (13 людей, 3 філії), закупівлі й дебіторська заборгованість.',
+   credo:'Порядок у процесах — порядок у цифрах', life:'Сильна в переговорах і побудові бізнес-процесів.'}
+];
+
+/* ================= ЛОГІКА ================= */
+const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const svg=id=>`<svg class="i"><use href="#${id}"/></svg>`;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=(n,l=2)=>String(n).padStart(l,'0');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+$('#yr').textContent=new Date().getFullYear();
+
+/* --- phone & validation --- */
+const digits=v=>v.replace(/\D/g,'');
+function fmtPhone(v){
+  const plus=v.trim().startsWith('+');let d=digits(v).slice(0,15);
+  if(!d)return plus?'+':'';
+  if(!plus&&d.startsWith('0'))d='38'+d;            // 067... -> +38 067...
+  if(d.startsWith('3800'))d='38'+d.slice(3);
+  if(d.startsWith('380')){d=d.slice(0,12);const q=[d.slice(0,2),d.slice(2,5),d.slice(5,8),d.slice(8,10),d.slice(10,12)];let o='+'+q[0];if(q[1])o+=' ('+q[1]+(q[1].length===3?')':'');if(q[2])o+=' '+q[2];if(q[3])o+='-'+q[3];if(q[4])o+='-'+q[4];return o;}
+  return '+'+d.replace(/(\d{3})(?=\d)/g,'$1 ');     // other countries
+}
+const okName=v=>v.trim().length>=2, okPhone=v=>{const d=digits(v);return d.startsWith('380')?d.length===12:(d.length>=8&&d.length<=15);};
+function mark(inp,ok){const f=inp.closest('.fld');f.classList.toggle('bad',!ok);inp.setAttribute('aria-invalid',!ok);return ok;}
+function wirePhone(inp){
+  inp.addEventListener('focus',()=>{if(!inp.value)inp.value='+';});
+  inp.addEventListener('input',()=>{inp.value=fmtPhone(inp.value);if(inp.closest('.fld').classList.contains('bad'))mark(inp,okPhone(inp.value));});
+  inp.addEventListener('blur',()=>{if(digits(inp.value).length<3)inp.value='';else mark(inp,okPhone(inp.value));});
+}
+function wireName(inp){inp.addEventListener('blur',()=>{if(inp.value)mark(inp,okName(inp.value));});inp.addEventListener('input',()=>{if(inp.closest('.fld').classList.contains('bad'))mark(inp,okName(inp.value));});}
+async function send(data){
+  if(CONFIG.endpoint){const r=await fetch(CONFIG.endpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw new Error(r.status);}
+  else{await new Promise(r=>setTimeout(r,700));console.info('[DEMO] Заявка:',data);}
+}
+const sumRows=rows=>rows.map(([k,v])=>`<div><span>${k}</span><b>${esc(v)}</b></div>`).join('');
+
+/* --- RECEIPT form (hero + contacts) --- */
+const today=new Date(), dstr=pad(today.getDate())+'.'+pad(today.getMonth()+1)+'.'+today.getFullYear();
+function receipt(host,src){
+  const p=src, no='HF-'+pad(today.getMonth()+1)+pad(today.getDate())+'-'+pad(Math.floor(Math.random()*900)+100,3);
+  host.innerHTML=`<div class="receipt">
+   <form class="rc" novalidate>
+    <div class="rc-top"><svg aria-hidden="true"><use href="#logo"/></svg><span>Заявка № <b>${no}</b></span><span>${dstr}</span></div>
+    <h2 class="rc-title">Залишити заявку</h2>
+    <p class="rc-sub">Оберіть напрямок — і ми зв’яжемося з вами.</p>
+    <hr class="rc-hr">
+    <div class="f-alert" role="alert"></div>
+    <fieldset><legend><b>01</b> · Форма бізнесу</legend><div class="chips biz">${['ФОП','ТОВ','Інше'].map((b,i)=>`<input type="radio" name="business" id="${p}-b${i}" value="${b}" ${i?'':'checked'}><label for="${p}-b${i}">${b}</label>`).join('')}</div></fieldset>
+    <fieldset><legend><b>02</b> · Що потрібно</legend><div class="chips svc"></div></fieldset>
+    <div class="fld"><div class="rc-line"><label for="${p}-n"><b>03</b> · Ім’я</label><input id="${p}-n" name="name" autocomplete="name" placeholder="Олена"></div><p class="err">Вкажіть, як до вас звертатися</p></div>
+    <div class="fld"><div class="rc-line"><label for="${p}-p"><b>04</b> · Телефон</label><input id="${p}-p" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 або інший код країни"></div><p class="err">Перевірте номер телефону</p></div>
+    <input class="hp" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div style="height:14px"></div>
+    <div class="rc-btns"><button class="btn btn-o" type="submit"><span class="spin" aria-hidden="true"></span>Надіслати заявку<svg class="i arr"><use href="#i-arrow"/></svg></button></div>
+    <p class="rc-note">Відповімо в робочий час. Натискаючи кнопку, ви погоджуєтеся з <a href="privacy.html" target="_blank">політикою конфіденційності</a> та <a href="oferta.html" target="_blank">договором оферти</a>.</p>
+   </form>
+   <div class="done" tabindex="-1" role="status"><span class="stamp">ПРИЙНЯТО</span><h3>Заявку ${no} прийнято</h3><p>Ми зателефонуємо вам у робочий час.</p><div class="sum"></div><button class="btn btn-line btn-block" type="button" data-reset>Нова заявка</button></div>
+  </div>`;
+  const card=$('.receipt',host), f=$('form',card), svc=$('.svc',f), nm=f.name, ph=f.phone;
+  const fill=(pref)=>{const b=$('input[name=business]:checked',f).value;svc.innerHTML=QUICK[b].map((s,i)=>`<input type="radio" name="service" id="${p}-s${i}" value="${s}" ${(pref?s===pref:i===1)?'checked':''}><label for="${p}-s${i}">${s}</label>`).join('');};
+  fill(); $$('input[name=business]',f).forEach(r=>r.addEventListener('change',()=>fill()));
+  wirePhone(ph); wireName(nm);
+  f.addEventListener('submit',async e=>{
+    e.preventDefault(); const al=$('.f-alert',f); al.classList.remove('on');
+    const bad=[[nm,okName],[ph,okPhone]].filter(([i,fn])=>!mark(i,fn(i.value))); if(bad.length){bad[0][0].focus();return;}
+    if(f.company_site.value) return;
+    const s=$('input[name=service]:checked',f);
+    const data={request_no:no,business:$('input[name=business]:checked',f).value,services:s?[s.value]:[],name:nm.value.trim(),phone:ph.value,source:src==='popup'?('popup: '+(window.__popSrc||'')):src,quiz:window.__quiz||'',page:location.href,created_at:new Date().toISOString()};
+    const btn=$('button[type=submit]',f); btn.setAttribute('aria-busy','true');
+    try{await send(data);$('.sum',card).innerHTML=sumRows([['Форма',data.business],['Послуга',data.services[0]||'—'],["Ім’я",data.name],['Телефон',data.phone]]);card.classList.add('sent');$('.done',card).focus();burst($('.stamp',card));markSent();}
+    catch(err){al.innerHTML='Не вдалося надіслати. Спробуйте ще раз або зателефонуйте: <a href="tel:+380663568040">066 356 80 40</a>';al.classList.add('on');}
+    finally{btn.removeAttribute('aria-busy');}
+  });
+  $('[data-reset]',card).addEventListener('click',()=>{f.reset();fill();card.classList.remove('sent');nm.focus();});
+}
+receipt($('#lead'),'hero'); receipt($('#lead2'),'contacts'); receipt($('#lead3'),'popup');
+
+/* --- CHAOS / SYSTEM switch --- */
+const sw=$('#sw'), board=$('#board'); let touched=false;
+function setSys(on){board.classList.toggle('sys',on);sw.setAttribute('aria-checked',on);}
+sw.addEventListener('click',()=>{touched=true;setSys(sw.getAttribute('aria-checked')!=='true');});
+/* switch changes only when the visitor clicks it */
+
+/* --- CONFIGURATOR --- */
+const picked={fop:new Set(),tov:new Set()}; let cur='fop';
+['fop','tov'].forEach(k=>{
+  $('#l-'+k).innerHTML=CATALOG[k].map((c,i)=>`<div class="row">
+    <div class="row-h"><label class="ck"><input type="checkbox" value="${esc(c.t)}" data-k="${k}"><span class="box">${svg('i-check')}</span><span class="t"><b>${c.t}</b><small>${c.s}</small></span></label>
+    <button class="more" type="button" aria-expanded="false" aria-controls="${k}-u${i}">Що входить ${svg('i-chev')}</button></div>
+    <ul id="${k}-u${i}" hidden>${c.items.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+});
+function renderPicked(){
+  const set=picked[cur], ul=$('#picked');
+  $('#p-biz').textContent=cur==='fop'?'ФОП':'ТОВ'; $('#p-n').textContent=set.size;
+  ul.innerHTML=set.size?[...set].map(s=>`<li>${esc(s)}</li>`).join(''):'<li class="empty">Позначте напрямки ліворуч ←</li>';
+}
+document.addEventListener('change',e=>{const c=e.target;if(!c.matches('.ck input'))return;const s=picked[c.dataset.k];c.checked?s.add(c.value):s.delete(c.value);c.closest('.row').classList.toggle('on',c.checked);renderPicked();});
+document.addEventListener('click',e=>{const b=e.target.closest('.more');if(!b)return;const ul=document.getElementById(b.getAttribute('aria-controls'));const o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o);ul.hidden=!o;});
+const tabs=$$('.seg [role=tab]');
+function tab(k,focus){cur=k;tabs.forEach(t=>{const on=t.id==='t-'+k;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus();});$('#l-fop').hidden=k!=='fop';$('#l-tov').hidden=k!=='tov';renderPicked();}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>tab(t.id.slice(2)));t.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();tab(tabs[(i+1)%2].id.slice(2),true);}});});
+(()=>{const panel=$('#panel'),f=$('.pf',panel),nm=$('#p-name'),ph=$('#p-phone');wireName(nm);wirePhone(ph);
+  f.addEventListener('submit',async e=>{e.preventDefault();const al=$('.f-alert',f);al.classList.remove('on');
+    const bad=[[nm,okName],[ph,okPhone]].filter(([i,fn])=>!mark(i,fn(i.value)));if(bad.length){bad[0][0].focus();return;}
+    if(f.company_site.value)return;
+    const data={business:cur==='fop'?'ФОП':'ТОВ',services:[...picked[cur]],name:nm.value.trim(),phone:ph.value,source:'configurator',page:location.href,created_at:new Date().toISOString()};
+    const btn=$('button[type=submit]',f);btn.setAttribute('aria-busy','true');
+    try{await send(data);$('.sum',panel).innerHTML=sumRows([['Форма',data.business],['Напрямків',String(data.services.length||'консультація')],["Ім’я",data.name],['Телефон',data.phone]]);panel.classList.add('sent');$('.done',panel).focus();burst($('.stamp',panel));markSent();}
+    catch(err){al.textContent='Не вдалося надіслати. Спробуйте ще раз або зателефонуйте 066 356 80 40';al.classList.add('on');}
+    finally{btn.removeAttribute('aria-busy');}
+  });
+  $('[data-reset]',panel).addEventListener('click',()=>{f.reset();panel.classList.remove('sent');nm.focus();});
+})();
+$('.panel').classList.add('pf-host');
+/* panel uses .sent on itself */
+document.head.insertAdjacentHTML('beforeend','<style>.panel.sent .pf{display:none}.panel.sent .done{display:block}</style>');
+
+/* --- TEAM --- */
+const initials=n=>n.split(' ').map(w=>w[0]).join('');
+let noPh=0;$('#teamg').innerHTML=TEAM.map((m,i)=>{const alt=!m.photo&&(noPh++)%2;return `<article class="fc rv${alt?' alt':''}">
+  <div class="fc-in">
+    <div class="fc-f">
+      <div class="pic">${m.photo?`<img src="${m.photo}" width="720" height="960" alt="${esc(m.name)}" loading="lazy">`:`<div class="mono" aria-hidden="true"><svg><use href="#logo"/></svg></div>`}<span class="fc-n">${pad(i+1)}</span></div>
+      <div class="fc-body"><h3>${m.name}</h3><span class="pos">${m.pos}</span><p class="hook">${m.hook}</p></div>
+      <button class="fc-go" type="button" aria-label="Детальніше про ${esc(m.name)}"><span>Детальніше</span><i>${svg('i-flip')}</i></button>
+    </div>
+    <div class="fc-b" aria-hidden="true">
+      <h3>${m.name}</h3><span class="pos2">${m.pos}</span>
+      <dl><dt>Для вас</dt><dd>${m.forYou}</dd><dt>Досвід</dt><dd>${m.exp}</dd><dt>Кредо</dt><dd class="cr">«${m.credo}»</dd>${m.life?`<dt>Поза роботою</dt><dd>${m.life}</dd>`:''}</dl>
+      <button class="fc-go" type="button" tabindex="-1" aria-label="Повернути картку"><span>Назад</span><i>${svg('i-flip')}</i></button>
+    </div>
+  </div></article>`}).join('');
+
+/* --- MANIFESTO words --- */
+(()=>{const el=$('#words');if(!el)return;const parts=el.textContent.trim().split(/\s+/);
+  el.innerHTML=parts.map(w=>{const a=/^\*.*\*[.,—]?$/.test(w);const clean=w.replace(/\*/g,'');return `<span class="w${a?' acc':''}">${clean}</span>`}).join(' ');
+  const ws=$$('.w',el);
+  const upd=()=>{const r=el.getBoundingClientRect();const p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.35)));const n=Math.round(p*ws.length*1.15);ws.forEach((w,i)=>w.classList.toggle('lit',i<n));};
+  if(reduce)ws.forEach(w=>w.classList.add('lit'));else{addEventListener('scroll',upd,{passive:true});upd();}
+})();
+
+/* --- count-up --- */
+function countUp(el){const t=+el.dataset.count;if(reduce){return;}const fm=el.dataset.fmt;const dur=1200,st=performance.now();
+  const f=n=>fm?n.toLocaleString('uk-UA'):String(n);
+  const step=now=>{const k=Math.min(1,(now-st)/dur),e=1-Math.pow(1-k,3);el.textContent=f(Math.round(t*e));if(k<1)requestAnimationFrame(step);};
+  requestAnimationFrame(step);}
+$$('[data-count][data-fmt]').forEach(el=>el.textContent=(+el.dataset.count).toLocaleString('uk-UA'));
+
+
+/* ================= WOW EFFECTS ================= */
+const fine=matchMedia('(pointer:fine)').matches;
+/* split headings into rising words (before pills are measured) */
+function split(el){let i=0;const walk=[...el.childNodes];el.textContent='';
+  walk.forEach(n=>{
+    if(n.nodeType===3){n.textContent.split(/([ \n\t]+)/).forEach(part=>{if(!part)return;if(/^[ \n\t]+$/.test(part)){el.append(' ');return;}
+      const w=document.createElement('span');w.className='sw';const si=document.createElement('span');si.className='si';si.style.setProperty('--i',i++);si.textContent=part;w.append(si);el.append(w);});}
+    else if(n.nodeName==='BR'){el.append(n);}
+    else{const w=document.createElement('span');w.className='sw';const si=document.createElement('span');si.className='si';si.style.setProperty('--i',i++);si.append(n);w.append(si);el.append(w);}
+  });}
+/* no hanging short words at line ends */
+(()=>{const re=/(^|[\s(«"])([А-ЯІЇЄҐа-яіїєґA-Za-z]{1,3})\s+/g;
+  const walk=n=>{if(n.nodeType===3){let t=n.nodeValue;t=t.replace(re,(m,a,w)=>a+w+' ').replace(re,(m,a,w)=>a+w+' ').replace(/\s+([—–])\s/g,' $1 ');n.nodeValue=t;return;}
+    if(n.nodeType===1&&!/^(SCRIPT|STYLE|INPUT|TEXTAREA|SELECT|OPTION|SVG)$/.test(n.nodeName))n.childNodes.forEach(walk);};
+  document.querySelectorAll('h1,h2,h3,p,li,.lede,dd,.btn,.note,label').forEach(walk);})();
+if(!reduce) $$('.hero h1, .h2, .fd h2').forEach(split);
+/* progress bar */
+const prog=$('#prog');
+addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;prog.style.transform=`scaleX(${h>0?scrollY/h:0})`;},{passive:true});
+/* hero spotlight + parallax mark */
+if(fine&&!reduce){const hero=$('.hero'),spot=$('.spot'),mk=$('.hero-mark');
+  hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;
+    spot.style.setProperty('--mx',x+'px');spot.style.setProperty('--my',y+'px');
+    mk.style.setProperty('--hx',(x/r.width-.5)*-30+'px');mk.style.setProperty('--hy',(y/r.height-.5)*-30+'px');});}
+/* magnetic buttons */
+if(fine&&!reduce){$$('.btn-o').forEach(b=>{
+  b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.22}px,${(e.clientY-r.top-r.height/2)*.3}px)`;});
+  b.addEventListener('pointerleave',()=>{b.style.transform='';});});}
+/* 3D tilt */
+if(fine&&!reduce){$$('.rcard, .mem .pic, .fd-ph .ph').forEach(c=>{c.classList.add('tilt');
+  c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    c.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`;});
+  c.addEventListener('pointerleave',()=>{c.style.transform='';});});}
+
+
+/* ================= MORE EFFECTS & POPUP ================= */
+/* confetti in brand colours */
+function burst(el){if(reduce||!el)return;const r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,cols=['#FB6835','#102662','#CAAE99','#FB6835'];
+  for(let i=0;i<34;i++){const d=document.createElement('i');d.className='cf';const w=6+Math.random()*10;d.style.cssText=`left:${cx}px;top:${cy}px;width:${w}px;height:${w*.45}px;background:${cols[i%4]}`;document.body.append(d);
+    const a=Math.random()*Math.PI*2,v=120+Math.random()*220;
+    d.animate([{transform:'translate(-50%,-50%) rotate(0)',opacity:1},{transform:`translate(${Math.cos(a)*v}px,${Math.sin(a)*v+160}px) rotate(${Math.random()*720}deg)`,opacity:0}],{duration:1100+Math.random()*600,easing:'cubic-bezier(.2,.7,.3,1)'}).onfinish=()=>d.remove();}}
+function markSent(){try{sessionStorage.setItem('hf-sent','1')}catch(e){}}
+/* popup */
+const modal=$('#modal');let lastFocus=null;
+function openModal(src){if(!modal.hidden)return;window.__popSrc=src||'';lastFocus=document.activeElement;modal.hidden=false;document.body.style.overflow='hidden';
+  requestAnimationFrame(()=>modal.classList.add('open'));setTimeout(()=>{const f=$('#lead3 input[name=business]:checked');f&&f.focus();},350);}
+function closeModal(){modal.classList.remove('open');document.body.style.overflow='';setTimeout(()=>{modal.hidden=true;lastFocus&&lastFocus.focus&&lastFocus.focus({preventScroll:true});},350);}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-popup]');if(t){e.preventDefault();if(typeof menu==='function'&&mnav.classList.contains('open'))menu(false);openModal(t.dataset.popup);return;}
+  if(e.target.closest('[data-close]'))closeModal();});
+addEventListener('keydown',e=>{if(modal.hidden)return;if(e.key==='Escape'){closeModal();return;}
+  if(e.key==='Tab'){const f=$$('button,input,a[href],[tabindex]:not([tabindex="-1"])',modal).filter(x=>x.offsetParent);const a=f[0],z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}});
+/* auto popup: every 60 s of time spent on the page (paused while a window is open, the tab is hidden or the visitor is typing); stops after a request is sent */
+const popOk=()=>{try{return !sessionStorage.getItem('hf-sent');}catch(e){return true;}};
+const popMark=()=>{};
+(()=>{let t=0;setInterval(()=>{if(!popOk())return;
+  const busy=document.hidden||!modal.hidden||!$('#story').hidden||(typeof mnav!=='undefined'&&mnav.classList.contains('open'))||/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'');
+  if(busy){if(!modal.hidden||!$('#story').hidden)t=0;return;}
+  if(++t>=60){t=0;openModal('Авто: кожну хвилину');}},1000);})();
+
+/* Telegram with a ready message */
+const TG='MariiaPanchenko_ua';
+function tgLink(t){return 'https://t.me/'+TG+'?text='+encodeURIComponent(t);}
+$$('[data-tgtext]').forEach(a=>a.href=tgLink(a.dataset.tgtext));
+document.addEventListener('click',e=>{
+  const a=e.target.closest('.rc-tg');if(a){const f=a.closest('form');const bz=$('input[name=business]:checked',f),sv=$('input[name=service]:checked',f);
+    const nm=f.name.value.trim(),ph=f.phone.value;
+    a.href=tgLink('Вітаю, Маріє! Пишу з сайту HAPPY FINANCE.\nФорма бізнесу: '+(bz?bz.value:'—')+'\nЩо потрібно: '+(sv?sv.value:'—')+(nm?'\nІм’я: '+nm:'')+(digits(ph).length>5?'\nТелефон: '+ph:''));return;}
+  const c=e.target.closest('#cfg-tg');if(c){const list=[...picked[cur]];const nm=$('#p-name').value.trim(),ph=$('#p-phone').value;
+    c.href=tgLink('Вітаю, Маріє! Пишу з сайту HAPPY FINANCE.\nФорма бізнесу: '+(cur==='fop'?'ФОП':'ТОВ')+'\nПотрібно: '+(list.length?list.join(', '):'консультація')+(nm?'\nІм’я: '+nm:'')+(digits(ph).length>5?'\nТелефон: '+ph:''));}
+});
+/* story modal */
+(()=>{const m=$('#story');let last=null;
+  const open=()=>{last=document.activeElement;m.hidden=false;document.body.style.overflow='hidden';requestAnimationFrame(()=>{m.classList.add('open');setTimeout(()=>$('#st-bars').classList.add('in'),250);});setTimeout(()=>$('.m-x',m).focus(),300);};
+  const close=(keep)=>{m.classList.remove('open');if(!keep)document.body.style.overflow='';setTimeout(()=>{m.hidden=true;$('#st-bars').classList.remove('in');if(!keep&&last&&last.focus)last.focus({preventScroll:true});},350);};
+  document.addEventListener('click',e=>{if(e.target.closest('[data-story]')){e.preventDefault();open();return;}
+    if(e.target.closest('[data-sclose]')){close();return;}
+    if(!m.hidden&&e.target.closest('#story [data-popup]')){close(true);}},true);
+  addEventListener('keydown',e=>{if(!m.hidden&&e.key==='Escape')close();});})();
+/* stagger groups */
+$$('.proc,.prin,.faq,.cfg-list,.picked,.socials,.stats,.chips-row').forEach(g=>{g.classList.add('stg');[...g.children].forEach((c,i)=>c.style.setProperty('--k',i));});
+/* scroll-linked: manifesto circle + parallax */
+(()=>{if(reduce)return;const mani=$('.mani')||document.createElement('div'),par=[[$('.hero-mark'),.25],[$('.fd-ph .badge'),-.12],[$('.fd-ph .badge2'),.1]];
+  const upd=()=>{const r=mani.getBoundingClientRect();const p=Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight*.9)));mani.style.setProperty('--cr',(12+p*130)+'%');
+    par.forEach(([el,k])=>{if(!el)return;const b=el.getBoundingClientRect();const d=(b.top+b.height/2-innerHeight/2);el.style.setProperty('--py',(d*k*-1).toFixed(1)+'px');});};
+  addEventListener('scroll',upd,{passive:true});upd();})();
+
+
+/* ===== EFFECTS v3 ===== */
+/* hero: floating brand capsules & symbols, react to cursor */
+(()=>{const cv=$('#fx');if(!cv||reduce)return;const ctx=cv.getContext('2d');let W,H,dpr=Math.min(2,devicePixelRatio||1),mx=-999,my=-999,run=true;
+  const syms=['₴','%','+','=','P&L','ПДВ','×'];const N=innerWidth<700?14:28;let ps=[];
+  function size(){const r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+  function mk(){return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:-.15-Math.random()*.35,t:Math.random()<.45?'cap':syms[Math.random()*syms.length|0],s:.6+Math.random()*1.1,a:.16+Math.random()*.26,r:Math.random()*6.28,vr:(Math.random()-.5)*.004}}
+  size();ps=Array.from({length:N},mk);addEventListener('resize',size);
+  const hero=$('.hero');hero.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});hero.addEventListener('pointerleave',()=>{mx=my=-999;});
+  new IntersectionObserver(es=>{run=es[0].isIntersecting;},{}).observe(hero);
+  (function loop(){if(run){ctx.clearRect(0,0,W,H);
+    for(const p of ps){const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy);if(d<160){p.vx+=dx/d*.08;p.vy+=dy/d*.08;}
+      p.vx*=.985;p.vy=p.vy*.985-.004;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;
+      if(p.y<-40){Object.assign(p,mk(),{y:H+30});}if(p.x<-40)p.x=W+30;if(p.x>W+40)p.x=-30;
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.globalAlpha=p.a*(d<160?2.2:1);
+      if(p.t==='cap'){ctx.strokeStyle='#FB6835';ctx.lineWidth=1.6;const w=26*p.s,h=12*p.s;ctx.beginPath();ctx.roundRect(-w/2,-h/2,w,h,h/2);ctx.stroke();}
+      else{ctx.fillStyle='#fff';ctx.font=`600 ${16*p.s}px Unbounded, sans-serif`;ctx.textAlign='center';ctx.fillText(p.t,0,0);}
+      ctx.restore();}}
+    requestAnimationFrame(loop);})();
+})();
+/* odometer for hero stats (replaces simple count-up) */
+$$('.stats [data-count]').forEach(el=>{if(reduce)return;const v=el.dataset.count;el.removeAttribute('data-count');el.innerHTML='';const o=document.createElement('span');o.className='odo';
+  [...v].forEach((d,j)=>{const col=document.createElement('span');col.style.setProperty('--j',j);col.innerHTML=Array.from({length:10+(+d)+1},(_,k)=>`<i>${k%10}</i>`).join('');col.dataset.n=10+(+d);o.append(col);});el.append(o);
+  const io2=new IntersectionObserver(es=>{if(es[0].isIntersecting){$$('span[data-n]',o).forEach(c=>c.style.transform=`translateY(-${c.dataset.n}em)`);io2.disconnect();}},{threshold:.5});io2.observe(el);});
+/* draggable chaos notes */
+(()=>{if(!fine)return;const bd=$('#board');$$('.note',bd).forEach(n=>{let sx,sy,ox=0,oy=0,on=false;
+  n.addEventListener('pointerdown',e=>{if(bd.classList.contains('sys'))return;on=true;n.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;ox=+n.dataset.dx||0;oy=+n.dataset.dy||0;n.classList.add('drag');});
+  n.addEventListener('pointermove',e=>{if(!on)return;const dx=ox+e.clientX-sx,dy=oy+e.clientY-sy;n.dataset.dx=dx;n.dataset.dy=dy;n.style.translate=`${dx}px ${dy}px`;n.style.rotate=`${(e.clientX-sx)*.03}deg`;});
+  const up=()=>{if(!on)return;on=false;n.classList.remove('drag');n.style.rotate='';};n.addEventListener('pointerup',up);n.addEventListener('pointercancel',up);});
+  const sw=$('#sw');sw.addEventListener('click',()=>{$$('.note',bd).forEach(n=>{n.style.transition='translate .8s var(--spring),transform .9s var(--spring),background-color .7s,border-radius .7s,box-shadow .7s';n.style.translate='';n.dataset.dx=n.dataset.dy=0;setTimeout(()=>n.style.transition='',900);});});
+})();
+if(!fine){const h=$('#dhint');h&&h.remove();}
+/* touch devices: notes flip one by one while scrolling (and on tap); desktop keeps switch + drag */
+(()=>{if(fine)return;const sec=$('#chaos'),bd=$('#board');if(!sec||!bd)return;
+  sec.classList.add('flipmode');
+  const notes=$$('.note',bd),P='perspective(1100px) ';
+  const base=n=>{const t=getComputedStyle(n).transform;return !t||t==='none'?'matrix(1,0,0,1,0,0)':t;};
+  const isOn=n=>n.classList.contains('on');
+  function flip(n,on,anim=true){
+    if(n._busy){n._want=on;return;}
+    if(isOn(n)===on)return;
+    n.setAttribute('aria-pressed',on);
+    if(reduce||!anim||!n.animate){n.classList.toggle('on',on);return;}
+    n._busy=true;const d=on?1:-1,a=base(n);
+    const a1=n.animate([{transform:P+a+' rotateY(0deg)'},{transform:P+a+' rotateY('+(90*d)+'deg)'}],{duration:220,easing:'cubic-bezier(.5,0,.75,0)',fill:'forwards'});
+    a1.onfinish=()=>{n.classList.toggle('on',on);a1.cancel();const b=base(n);
+      const a2=n.animate([{transform:P+b+' rotateY('+(-90*d)+'deg)'},{transform:P+b+' rotateY(0deg)'}],{duration:560,easing:'cubic-bezier(.2,.9,.3,1.18)'});
+      a2.onfinish=a2.oncancel=()=>{n._busy=false;if(n._want!==undefined){const w=n._want;n._want=undefined;flip(n,w);}};};
+  }
+  notes.forEach(n=>{n.setAttribute('role','button');n.setAttribute('tabindex','0');n.setAttribute('aria-pressed','false');
+    n.addEventListener('click',()=>flip(n,!(n._want!==undefined?n._want:isOn(n))));
+    n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();n.click();}});});
+  /* a note flips when its middle rises above ~42% of the screen and flips back when it drops below ~58%,
+     so the problem side is readable on the way up and the solution side after it */
+  const UP=.42,DOWN=.58;let tick=false;
+  function check(){tick=false;const vh=innerHeight;
+    notes.forEach(n=>{const r=n.getBoundingClientRect(),c=(r.top+r.bottom)/2;
+      const z=c<vh*UP?'up':c>vh*DOWN?'down':n._z;if(z===n._z)return;n._z=z;
+      flip(n,z==='up',r.bottom>0&&r.top<vh);});}
+  addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(check);}},{passive:true});
+  addEventListener('resize',check);check();
+})();
+/* cursor spotlight on cards */
+
+/* scramble effect on mono tags when they appear */
+(()=>{if(reduce)return;const ch='АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШ0123456789₴%';
+  const io3=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;io3.unobserve(en.target);const el=en.target;const nodes=[...el.childNodes].filter(n=>n.nodeType===3&&n.textContent.trim());
+    nodes.forEach(n=>{const fin=n.textContent;let f=0;const tot=18;const t=setInterval(()=>{f++;n.textContent=[...fin].map((c,i)=>c===' '||i<fin.length*f/tot?c:ch[Math.random()*ch.length|0]).join('');if(f>=tot){clearInterval(t);n.textContent=fin;}},35);});}),{threshold:1});
+  $$('.tag').forEach(t=>io3.observe(t));})();
+/* click ripple on buttons */
+document.addEventListener('pointerdown',e=>{const b=e.target.closest('.btn,.chips label,.seg button');if(!b||reduce)return;const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height);
+  const sp=document.createElement('span');sp.className='rip';sp.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;
+  if(getComputedStyle(b).position==='static')b.style.position='relative';b.style.overflow='hidden';b.append(sp);setTimeout(()=>sp.remove(),650);});
+
+
+/* ================= QUIZ ================= */
+(()=>{if(!document.getElementById('qz'))return;const Q=[
+  {t:'Спершу про вас: який у вас бізнес?',two:true,o:[['ФОП',-1],['ТОВ',-1]]},
+  {t:'Чи знаєте ви реальний прибуток бізнесу щомісяця?',area:'цифри',o:[['Так, бачу точні цифри',2],['Приблизно, «на око»',1],['Ні, бачу лише залишок на рахунку',0]]},
+  {t:'Як здаються звіти й сплачуються податки?',area:'строки',o:[['Завжди вчасно, без нагадувань',2],['Буває — в останній день',1],['Траплялися штрафи або пені',0]]},
+  {t:'Що з первинними документами та актами звірок?',area:'документи',o:[['Усе зібрано й сходиться',2],['Частково, доганяємо в кінці місяця',1],['Хаос — тримається на пам’яті людей',0]]},
+  {t:'Запити банку чи блокування ПН за останній рік?',area:'ризики',o:[['Не було',2],['Був один випадок',1],['Трапляється регулярно',0]]}];
+  const TIP={цифри:'Налаштувати управлінський облік: P&L, Cashflow і звіти, за якими видно реальний прибуток.',
+    строки:'Взяти під контроль календар податків і звітів: реквізити, нагадування, перевірка сплати.',
+    документи:'Навести порядок у первинці: документообіг під ваш бізнес і точки контролю.',
+    ризики:'Підготуватися до запитів банку й ДПС: пакет пояснень, контроль ПН і фінмоніторингу.'};
+  const st=$('#qz-stage'),dots=$('#qz-dots'),stepEl=$('#qz-step'),back=$('#qz-back'),num=$('#qz-num'),path=$('#qz-path'),glow=$('#qz-glow');
+  dots.innerHTML=Q.map(()=>'<i></i>').join('');
+  let i=0,ans=[];let calm=0,target=0,ph=0;
+  // animated "pulse": chaos amplitude shrinks as score rises
+  (function wave(){calm+=(target-calm)*.05;ph+=.035;const A=70*(1-calm)+6,N=80;let d='';
+    for(let k=0;k<=N;k++){const x=k/N*400;const n=Math.sin(k*.55+ph*3)*.55+Math.sin(k*1.7-ph*2)*.3+Math.sin(k*.21+ph)*.4;const y=100+n*A*(1-calm*.6)-calm*40*(k/N);d+=(k?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}
+    path.setAttribute('d',d);glow.setAttribute('d',d);requestAnimationFrame(wave);})();
+  const score=()=>{const sc=ans.slice(1).filter(a=>a!=null);if(!sc.length)return null;return Math.round(sc.reduce((s,a)=>s+a,0)/(sc.length*2)*100);};
+  function upd(){const v=score();num.textContent=v==null?'—':v;target=v==null?0:v/100;
+    $$('i',dots).forEach((d,k)=>{d.className=k<i?'on':k===i?'cur':'';});stepEl.textContent=i<Q.length?`Питання ${i+1} з ${Q.length}`:'Ваш результат';back.hidden=i===0;}
+  function render(){const old=$('.qz-q',st);const draw=()=>{st.innerHTML='';const q=Q[i];const el=document.createElement('div');el.className='qz-q';
+      if(q){el.innerHTML=`<h3>${q.t}</h3><div class="qz-opts${q.two?' two':''}">${q.o.map((o,k)=>`<button class="qz-opt${ans[i]!==undefined&&((q.two&&ans[0]===o[0])||(!q.two&&ans[i]===o[1]))?' sel':''}" type="button" data-k="${k}">${q.two?'':`<span class="k">${String.fromCharCode(65+k)}</span>`}${o[0]}</button>`).join('')}</div>`;}
+      else el.innerHTML=result();
+      st.append(el);upd();const f=$('button',el);f&&f.focus({preventScroll:true});};
+    if(old&&!reduce){old.classList.add('out');setTimeout(draw,260);}else draw();}
+  function result(){const v=score();const weak=Q.slice(1).map((q,k)=>[q.area,ans[k+1]]).filter(x=>x[1]<2).sort((a,b)=>a[1]-b[1]);
+    const lvl=v>=80?['ok','Майже система']:v>=45?['','Є зони ризику']:['bad','Фінансовий хаос'];
+    const txt=v>=80?'У вас усе непогано організовано. Ми можемо взяти рутину на себе й додати управлінські цифри для рішень.':v>=45?'Основа є, але кілька зон забирають ваш час і створюють ризики. Їх можна закрити за 1–2 місяці.':'Бізнес працює всупереч обліку. Це виправно: почнемо з аналізу й наведемо лад крок за кроком.';
+    const tips=(weak.length?weak:[['цифри',2]]).slice(0,3).map(([a],k)=>`<li><b>${k+1}</b>${TIP[a]}</li>`).join('');
+    window.__quiz=`Індекс спокою ${v}/100 (${ans[0]||'—'}); зони: ${weak.map(w=>w[0]).join(', ')||'—'}`;
+    return `<div class="qz-res"><span class="lvl ${lvl[0]}">${lvl[1]}</span><h3>Ваш індекс спокою — ${v}/100</h3><p class="d">${txt}</p><ul>${tips}</ul>
+      <div class="acts"><a class="btn btn-o" href="#lead" data-popup="Тест: індекс ${v}">Отримати план від Марії <svg class="i"><use href="#i-arrow"/></svg></a><button class="again" type="button" data-again>Пройти ще раз</button></div></div>`;}
+  st.addEventListener('click',e=>{const b=e.target.closest('.qz-opt');if(b){const q=Q[i],o=q.o[+b.dataset.k];
+      $$('.qz-opt',st).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');
+      if(q.two)ans[0]=o[0];else ans[i]=o[1];upd();setTimeout(()=>{i++;render();if(i===Q.length&&typeof burst==='function')setTimeout(()=>burst($('.qz-res .lvl')),300);},280);return;}
+    if(e.target.closest('[data-again]')){i=0;ans=[];render();}});
+  back.addEventListener('click',()=>{if(i>0){i--;render();}});
+  render();
+})();
+
+/* ================= TEAM FLIP ================= */
+(()=>{const tr=$('#teamg'),prev=$('#tm-prev'),next=$('#tm-next'),bar=$('#tm-bar');
+  tr.addEventListener('click',e=>{const b=e.target.closest('.fc-go');if(!b)return;const c=b.closest('.fc');const on=!c.classList.contains('flip');c.classList.toggle('flip',on);
+    $('.fc-b',c).setAttribute('aria-hidden',!on);$('.fc-f',c).setAttribute('aria-hidden',on);$$('.fc-go',c).forEach(x=>x.tabIndex=-1);const t=$(on?'.fc-b .fc-go':'.fc-f .fc-go',c);t.tabIndex=0;t.focus({preventScroll:true});});
+  const step=()=>{const c=$('.fc',tr);return c?c.getBoundingClientRect().width+20:300;};
+  prev.addEventListener('click',()=>tr.scrollBy({left:-step()}));next.addEventListener('click',()=>tr.scrollBy({left:step()}));
+  const upd=()=>{const max=tr.scrollWidth-tr.clientWidth;const p=max>0?tr.scrollLeft/max:0;const w=tr.clientWidth/tr.scrollWidth*100;
+    bar.style.width=w+'%';bar.style.transform=`translateX(${p*(100/w*100-100)}%)`;prev.disabled=tr.scrollLeft<4;next.disabled=tr.scrollLeft>max-4;
+    prev.classList.toggle('on',!prev.disabled);next.classList.toggle('on',!next.disabled);};
+  tr.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);setTimeout(upd,300);
+  tr.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();tr.scrollBy({left:step()});}if(e.key==='ArrowLeft'){e.preventDefault();tr.scrollBy({left:-step()});}});
+})();
+
+
+/* coloured orbs that make the matte glass readable */
+(()=>{const C={o:'rgba(251,104,53,.30)',n:'rgba(32,64,160,.28)',b:'rgba(202,174,153,.55)',d:'rgba(60,100,220,.35)'};
+  const set={chaos:['o','n','b'],quiz:['n','o','b'],services:['b','n','o'],results:['n','o','b'],team:['b','o','n'],faq:['o','n'],contacts:['d','o'],principles:['d','o']};
+  Object.entries(set).forEach(([id,cs])=>{const sec=document.getElementById(id);if(!sec)return;const o=document.createElement('div');o.className='orbs';o.setAttribute('aria-hidden','true');
+    o.innerHTML=cs.map((c,i)=>`<i style="--c:${C[c]};--s:${520+i*90}px;--l:${[8,62,30][i]}%;--t:${[18,48,70][i]}%;--d:${16+i*5}s;--mx:${[60,-80,40][i]}px;--my:${[-50,60,-40][i]}px;margin:-${260+i*45}px 0 0 -${260+i*45}px"></i>`).join('');
+    sec.prepend(o);});})();
+
+/* --- pills: no extra side margin at the start/end of a line, so text stays flush --- */
+function pills(){$$('br.pbr').forEach(b=>b.remove());$$('.pill').forEach(el=>{el.classList.remove('ls','le');const parent=el.closest('h1,h2,h3,p,div');
+  const atStart=()=>{const pr=parent.getBoundingClientRect(),r=el.getBoundingClientRect(),ml=parseFloat(getComputedStyle(el).marginLeft);return r.left-ml<=pr.left+parseFloat(getComputedStyle(parent).paddingLeft)+2;};
+  if(atStart()){el.classList.add('ls');
+    /* without the margin it may jump back to the previous line: then force a clean line break */
+    if(!atStart()){el.classList.remove('ls');const host=el.closest('.sw')||el;const br=document.createElement('br');br.className='pbr';host.before(br);el.classList.add('ls');}}
+});}
+pills();if(document.fonts)document.fonts.ready.then(pills);addEventListener('load',()=>{pills();setTimeout(pills,600);});addEventListener('resize',()=>{clearTimeout(pills.t);pills.t=setTimeout(pills,150);});
+
+/* --- reveal --- */
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');$$('[data-count]',en.target).forEach(countUp);io.unobserve(en.target);}}),{threshold:.12});
+const startReveal=()=>$$('.rv').forEach(el=>io.observe(el));
+(()=>{const intro=$('#intro');let seen=false;
+  if(reduce||seen){intro.remove();startReveal();return;}
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{intro.classList.add('up');document.body.style.overflow='';startReveal();setTimeout(()=>intro.remove(),900);},1250);
+})();
+
+/* --- header, menu, sticky CTA, nav spy --- */
+const hdr=$('#hdr'),burger=$('#burger'),mnav=$('#mnav'),mcta=$('#mcta');
+function onScroll(){hdr.classList.toggle('s',scrollY>20);const hb=$('.hero').offsetHeight,cb=$('#contacts').getBoundingClientRect();mcta.classList.toggle('on',scrollY>hb-150&&cb.top>innerHeight*.6);}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+function menu(o){mnav.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Закрити меню':'Відкрити меню');burger.innerHTML=svg(o?'i-x':'i-menu');document.body.style.overflow=o?'hidden':'';if(o)hdr.classList.add('s');else onScroll();}
+burger.addEventListener('click',()=>menu(!mnav.classList.contains('open')));
+$$('a',mnav).forEach(a=>a.addEventListener('click',()=>menu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&mnav.classList.contains('open')){menu(false);burger.focus();}});
+const links=$$('.nav a');
+const spy=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id));}),{rootMargin:'-45% 0px -50% 0px'});
+['chaos','quiz','services','results','about','team','contacts'].forEach(id=>spy.observe(document.getElementById(id)));
+</script>
+</body>
+</html>
